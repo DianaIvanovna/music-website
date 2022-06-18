@@ -1,0 +1,7 @@
+@mixin fontText($style, $weight, $size, $height) {
+  font-family: 'Commissioner';
+  font-weight: $weight;
+  font-style: $style;
+  font-size: $size;
+  line-height: $height;
+}
