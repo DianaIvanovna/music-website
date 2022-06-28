@@ -69,18 +69,20 @@ $time: 2s;
 
   &__item-4 {
     position: fixed;
-    top: 20%;
-    right: 5%;
+    top: 0%;
+    right: -5%;
     z-index: -1;
     display: none;
+    transform: scale(0.1);
     transition: all ease-in $time;
   }
   &__item-5 {
     display: none;
     position: fixed;
-    top: 30%;
-    right: 15%;
+    top: 15%;
+    right: -2%;
     z-index: -1;
+    transform: scale(0.3);
     display: none;
     transition: all ease-in $time;
   }
@@ -97,10 +99,11 @@ $time: 2s;
   }
   &__item-9 {
     position: fixed;
-    top: 30%;
-    right: 10%;
+    top: 15%;
+    right: -10%;
     z-index: 1;
     display: none;
+    transform: scale(0.2);
     z-index: -1;
     transition: all ease-in $time;
   }
@@ -252,11 +255,10 @@ $time: 2s;
     }
     &__item-4 {
       display: block;
-      top: 137%;
-      right: 25%;
-      transform: scale(10);
-      box-shadow: 5.2604px 10.5208px 63.1249px rgba(24, 27, 37, 0.25),
-        0px 132.215px 330.538px rgba(4, 5, 12, 0.6);
+      top: 5%;
+      right: 8%;
+      transform: scale(1);
+
       //   position: fixed;
       //   top: 20%;
       //   right: 5%;
@@ -294,11 +296,17 @@ $time: 2s;
     }
 
     &__item-4 {
+      // display: block;
+      // top: 137%;
+      // right: 100%;
+      // //right: 25%;
+      // transform: scale(10);
+
       display: block;
-      top: 137%;
+      top: 5%;
       right: 100%;
-      //right: 25%;
-      transform: scale(10);
+      transform: scale(1);
+
       box-shadow: 5.2604px 10.5208px 63.1249px rgba(24, 27, 37, 0.25),
         0px 132.215px 330.538px rgba(4, 5, 12, 0.6);
     }
@@ -351,11 +359,13 @@ $time: 2s;
     &__item-5 {
       display: block;
       position: fixed;
-      top: 45%;
-      right: 25%;
-      transform: scale(4);
-      box-shadow: 2.01567px 4.03134px 24.188px rgba(24, 27, 37, 0.25),
-        0px 50.6619px 126.655px rgba(4, 5, 12, 0.6);
+      // top: 45%;
+      // right: 25%;
+      // transform: scale(4);
+      top: 20%;
+      right: 9%;
+      z-index: -1;
+      transform: scale(1.15);
     }
     &__item-6 {
       display: none;
@@ -423,7 +433,7 @@ $time: 2s;
       position: relative;
       left: 220%;
       display: block;
-      left: -220%;
+      left: -100vw;
     }
     &__item-8 {
       display: block;
@@ -504,9 +514,9 @@ $time: 2s;
     }
     &__item-9 {
       display: block;
-      transform: scale(5);
-      top: 60%;
-      right: 25%;
+      transform: scale(1);
+      top: 15%;
+      right: 6%;
     }
   }
 }
@@ -572,9 +582,9 @@ $time: 2s;
     }
     &__item-9 {
       display: block;
-      transform: scale(5);
-      top: 60%;
-      right: 100%;
+      transform: scale(1);
+      top: 15%;
+      right: 100vw;
       // top: -100vh;
     }
     &__img-2 {

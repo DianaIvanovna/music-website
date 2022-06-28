@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Header.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../../../public/LOGO.svg';
 import menu from '../../../public/menu.svg';
 
@@ -11,33 +11,73 @@ const Header = () => {
     <header className="header">
       <img src={logo} alt="logo" />
       <nav className="header__nav ">
-        <Link to="about" className="header__link">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? 'header__link header__link--active' : 'header__link'
+          }
+        >
           about
-        </Link>
-        <Link to="songs" className="header__link">
+        </NavLink>
+        <NavLink
+          to="songs"
+          className={({ isActive }) =>
+            isActive ? 'header__link header__link--active' : 'header__link'
+          }
+        >
           songs
-        </Link>
-        <Link to="songs" className="header__link">
+        </NavLink>
+        <NavLink
+          to="poems"
+          className={({ isActive }) =>
+            isActive ? 'header__link header__link--active' : 'header__link'
+          }
+        >
           poems
-        </Link>
-        <Link to="songs" className="header__link">
+        </NavLink>
+        <NavLink
+          to="contacts"
+          className={({ isActive }) =>
+            isActive ? 'header__link header__link--active' : 'header__link'
+          }
+        >
           contacts
-        </Link>
+        </NavLink>
       </nav>
       {showMenu ? (
         <nav className="header__nav header__nav--mobile">
-          <Link to="about" className="header__link">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+          >
             about
-          </Link>
-          <Link to="songs" className="header__link">
+          </NavLink>
+          <NavLink
+            to="songs"
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+          >
             songs
-          </Link>
-          <Link to="songs" className="header__link">
+          </NavLink>
+          <NavLink
+            to="poems"
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+          >
             poems
-          </Link>
-          <Link to="songs" className="header__link">
+          </NavLink>
+          <NavLink
+            to="contacts"
+            className={({ isActive }) =>
+              isActive ? 'header__link header__link--active' : 'header__link'
+            }
+          >
             contacts
-          </Link>
+          </NavLink>
         </nav>
       ) : null}
 

@@ -22,7 +22,7 @@ const AboutPage = () => {
           setBlockScroll(false);
         }, 2500);
       }
-      if (event.deltaY > 0 && step !== 8) {
+      if (event.deltaY > 0 && step !== 0) {
         console.log('Scroll!', step);
         setStep((value) => value - 1);
         setBlockScroll(true);

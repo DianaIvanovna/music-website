@@ -1,0 +1,154 @@
+@import '../../variables.scss';
+.contacts-page {
+  //   border: 1px solid red;
+  flex-grow: 1;
+  color: white;
+
+  &__text-container {
+    max-width: 384px;
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @media screen and (max-width: 1024px) {
+      max-width: 510px;
+    }
+    @media screen and (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media screen and (max-width: 1024px) and (min-width: 700px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__header {
+    @include fontText(normal, 300, 48px, 59px);
+    text-transform: uppercase;
+    color: #aaafc6;
+    margin: 0;
+    margin-bottom: 86px;
+
+    @media screen and (max-width: 1024px) {
+      @include fontText(normal, 300, 72px, 88px);
+    }
+    @media screen and (max-width: 1024px) and (min-width: 700px) {
+      @include fontText(normal, 300, 32px, 39px);
+      margin-bottom: 30px;
+      text-align: start;
+    }
+    @media screen and (max-width: 700px) {
+      @include fontText(normal, 300, 32px, 39px);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+  }
+
+  &__text {
+    @include fontText(normal, 300, 24px, 36px);
+
+    color: #7c83a1;
+    @media screen and (max-width: 1024px) {
+      @include fontText(normal, 300, 32px, 48px);
+    }
+    @media screen and (max-width: 1024px) and (min-width: 600px) {
+      max-width: 300px;
+      margin: 0 0;
+      @include fontText(normal, 300, 24px, 36px);
+      text-align: start;
+      margin-bottom: 15px;
+    }
+    @media screen and (max-width: 700px) {
+      max-width: 300px;
+      margin: 0 auto;
+      @include fontText(normal, 300, 24px, 36px);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    @media screen and (max-width: 400px) {
+      @include fontText(normal, 300, 21px, 24px);
+    }
+  }
+
+  &__link {
+    @include fontText(normal, 300, 24px, 36px);
+
+    color: #da4f4f;
+    @media screen and (max-width: 1024px) {
+      @include fontText(normal, 300, 32px, 48px);
+      align-self: flex-start;
+    }
+    @media screen and (max-width: 1024px) and (min-width: 600px) {
+      @include fontText(normal, 300, 24px, 36px);
+      align-self: flex-start;
+    }
+    @media screen and (max-width: 700px) {
+      @include fontText(normal, 300, 24px, 36px);
+      //   text-align: center;
+      //   margin: 0 auto;
+      //   width: 300px;
+      align-self: center;
+    }
+
+    @media screen and (max-width: 400px) {
+      @include fontText(normal, 300, 21px, 24px);
+    }
+  }
+
+  &__img-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -2;
+    // width: 100%;
+    height: 100%;
+  }
+
+  &__img {
+    height: 100vh;
+    position: relative;
+    @media screen and (max-width: 1600px) {
+      right: -25%;
+    }
+    @media screen and (max-width: 1200px) {
+      right: -60%;
+    }
+    @media screen and (max-width: 600px) {
+      right: -70%;
+    }
+  }
+
+  &__blur {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(25, 27, 37, 0.1) 0%,
+      rgba(25, 27, 37, 0) 156.71%,
+      rgba(25, 27, 37, 0) 292.12%
+    );
+    backdrop-filter: blur(12px);
+    z-index: -1;
+  }
+  &__linear {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(25, 27, 37, 0.0727273) 0%,
+      rgba(25, 27, 37, 0) 64.06%,
+      #191b25 100%
+    );
+    z-index: -1;
+  }
+}
