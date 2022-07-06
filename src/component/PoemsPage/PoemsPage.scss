@@ -1,0 +1,447 @@
+@import '../../variables.scss';
+@mixin scroll() {
+  &::-webkit-scrollbar-button {
+    background-repeat: no-repeat;
+    width: 3px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-track {
+    // background-color: #7c83a1;
+    background: #7c83a1;
+    border: 1px solid transparent;
+    background-clip: content-box;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #da4f4f;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #7c83a1;
+  }
+
+  &::-webkit-resizer {
+    background-repeat: no-repeat;
+    width: 3px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hideBlock {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.poems-page {
+  // padding: 40px 0 127px;
+  //border: 1px solid red;
+  flex-grow: 1;
+  color: white;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &__img {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: -1;
+    img {
+      height: 100%;
+    }
+
+    @media screen and (max-width: 1024px) {
+      //width: 100%;
+      height: 100%;
+      left: auto;
+      right: 0;
+      img {
+        height: 100%;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      height: 100%;
+      left: auto;
+      right: 0;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    height: 100%;
+    position: relative;
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    //margin-top: 20vh;
+    height: 408px;
+    @include scroll();
+    direction: rtl;
+    flex-shrink: 0;
+    margin-top: 20vh;
+    margin-right: 200px;
+
+    &--mobile {
+      display: none;
+    }
+    @media screen and (max-width: 1600px) {
+      margin-right: 50px;
+    }
+    @media screen and (max-width: 1440px) {
+      margin-right: 50px;
+      height: 300px;
+    }
+    @media screen and (max-width: 1024px) {
+      display: none;
+      &--mobile {
+        display: flex;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+      }
+    }
+  }
+  &__li {
+    @include fontText(normal, 300, 48px, 59px);
+    text-transform: uppercase;
+    color: #7c83a1;
+    height: 136px;
+    flex-shrink: 0;
+    text-align: left;
+    margin-left: 70px;
+    padding-top: 36.5px;
+    &--active {
+      color: #da4f4f;
+    }
+    @media screen and (max-width: 1440px) {
+      height: 100px;
+      padding-top: 32px;
+      margin-left: 30px;
+      @include fontText(normal, 300, 36px, 36px);
+    }
+    @media screen and (max-width: 1024px) {
+      text-align: center;
+      @include fontText(normal, 300, 32px, 39px);
+      height: auto;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 32px;
+    }
+    @media screen and (max-width: 600px) {
+      text-align: center;
+      @include fontText(normal, 300, 24px, 36px);
+      height: auto;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__poem-container {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  &__poem-text {
+    @include fontText(normal, 300, 32px, 48px);
+
+    color: #aaafc6;
+
+    padding: 20vh 0 300px;
+    padding-top: calc(20vh + 36.5px);
+    text-align: left;
+    height: 100%;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none; /*chrome*/
+    }
+    // @include scroll2();
+    // position: relative;
+    // left: 0;
+    // top: 0;
+    //width: 45%;
+    @media screen and (max-width: 1440px) {
+      padding-top: calc(20vh + 32px);
+      @include fontText(normal, 300, 26px, 126%);
+    }
+    @media screen and (max-width: 1024px) {
+      // width: max-content;
+      // margin: 0 auto;
+
+      display: none;
+    }
+    @media screen and (max-width: 600px) {
+      @include fontText(normal, 300, 20px, 30px);
+      text-align: center;
+    }
+  }
+
+  &__poem-mobile {
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      // margin-top: 100px;
+      height: 100%;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none; /*chrome*/
+      }
+
+      .poems-page__poem-text {
+        display: block;
+        // overflow-y: hidden;
+        height: max-content;
+        padding: 0;
+        padding-bottom: 70px;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      margin-top: 50px;
+    }
+  }
+
+  &__shadow-up {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 200px;
+    // border: 1px solid red;
+    background: linear-gradient(
+      180deg,
+      #191b25 40%,
+      rgba(25, 27, 37, 0.0727273) 100.92%
+    );
+    z-index: 2;
+
+    @media screen and (max-width: 600px) {
+      height: 150px;
+      // border: 1px solid red;
+      background: linear-gradient(
+        180deg,
+        #191b25 40%,
+        rgba(25, 27, 37, 0.0727273) 100.92%
+      );
+    }
+  }
+
+  &__shadow-down {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    // border: 1px solid red;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(
+      180deg,
+      rgba(25, 27, 37, 0) 1%,
+      #191b25 50.69%,
+      #191b25 100%
+    );
+    z-index: 2;
+    @media screen and (max-width: 600px) {
+      height: 200px;
+      background: linear-gradient(
+        180deg,
+        rgba(25, 27, 37, 0) 1%,
+        #191b25 30.69%,
+        #191b25 100%
+      );
+    }
+  }
+
+  &__title {
+    @include fontText(normal, 400, 72px, 88px);
+    margin: 10vh 0 72px;
+
+    text-align: center;
+    width: 100%;
+
+    color: #da4f4f;
+    display: none;
+    @media screen and (max-width: 1024px) {
+      display: block;
+    }
+    @media screen and (max-width: 600px) {
+      @include fontText(normal, 300, 48px, 59px);
+      margin-top: 15vh;
+      margin-bottom: 56px;
+    }
+  }
+
+  &__subtitle {
+    @include fontText(normal, 300, 32px, 39px);
+    text-transform: uppercase;
+
+    /* Main/Red */
+    margin: 0;
+    margin-bottom: 20px;
+
+    color: #da4f4f;
+    @media screen and (max-width: 1024px) {
+      margin-top: 120px;
+    }
+    @media screen and (max-width: 600px) {
+      @include fontText(normal, 300, 24px, 36px);
+      margin-top: 80px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  }
+
+  &__button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 200px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    border: none;
+
+    @include fontText(normal, 600, 18px, 22px);
+    text-transform: uppercase;
+    color: #52597a;
+
+    svg {
+      margin-left: 27.5px;
+    }
+
+    &--first {
+      svg {
+        margin-right: 27.5px;
+        margin-left: 0;
+      }
+      &::after {
+        content: 'Previous';
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      &--first {
+        &::after {
+          content: 'Prev';
+        }
+      }
+    }
+  }
+
+  &__menu {
+    &--entering {
+      //ввод
+      // background-color: red;
+      //opacity: 0.5;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      opacity: 0;
+    }
+    &--entered {
+      //введен
+      // background-color: blue;
+      animation: showBlock 1s forwards;
+      //opacity: 0;
+    }
+    &--exiting {
+      //выход
+      // background-color: yellow;
+      animation: hideBlock 1s forwards;
+    }
+    &--exited {
+      //вышел
+      // background-color: green;
+      opacity: 0;
+    }
+  }
+  .poems-page__poem-mobile {
+    &--entering {
+      //ввод
+      // background-color: red;
+      //opacity: 0.5;
+      opacity: 0;
+    }
+    &--entered {
+      //введен
+      // background-color: blue;
+      animation: showBlock 1s forwards;
+      //opacity: 0;
+    }
+    &--exiting {
+      //выход
+      // background-color: yellow;
+
+      animation: hideBlock 1s forwards;
+    }
+    &--exited {
+      //вышел
+      // background-color: green;
+      opacity: 0;
+    }
+  }
+
+  // &__shadow-base {
+  //   position: absolute;
+  //   bottom: 0;
+  //   right: 0;
+  //   border: 1px solid red;
+  //   width: 50%;
+  //   height: 100%;
+  //   background: linear-gradient(
+  //     180deg,
+  //     #191b25 0%,
+  //     rgba(25, 27, 37, 0.0727273) 22.92%,
+  //     rgba(25, 27, 37, 0) 53.65%,
+  //     #191b25 79.69%,
+  //     #191b25 100%
+  //   );
+  //   z-index: 2;
+  // }
+}
