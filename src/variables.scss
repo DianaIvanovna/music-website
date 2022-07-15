@@ -5,3 +5,11 @@
   font-size: $size;
   line-height: $height;
 }
+
+@mixin fontTitle($style, $weight, $size, $height) {
+  font-family: 'Cera Pro';
+  font-weight: $weight;
+  font-style: $style;
+  font-size: $size;
+  line-height: $height;
+}
