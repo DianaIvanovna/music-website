@@ -13,11 +13,11 @@ import Footer from './component/shared/Footer/Footer';
 function App() {
   return (
     <div className="app">
-      {/* <Header /> */}
+      <Header />
 
-      <StubPage />
+      {/* <StubPage /> */}
 
-      {/* <React.Fragment>
+      <React.Fragment>
         <Routes>
           <Route path="/" element={<AboutPage />} />
           <Route path="/songs" element={<SongsPage />} />
@@ -26,9 +26,9 @@ function App() {
 
           <Route element={<AboutPage />} />
         </Routes>
-      </React.Fragment> */}
+      </React.Fragment>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

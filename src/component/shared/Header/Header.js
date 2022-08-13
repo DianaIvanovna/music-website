@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import './Header.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../public/LOGO.svg';
 import menu from '../../../public/menu.svg';
 
-const Header = () => {
+const Header = (props) => {
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className={`header ${showMenu ? 'header--black' : ''}`}>
-      <img src={logo} alt="logo" />
+      <img
+        src={logo}
+        alt="logo"
+        onClick={() => {
+          return navigate('/');
+        }}
+      />
       <nav className="header__nav ">
         <NavLink
           onClick={() => {

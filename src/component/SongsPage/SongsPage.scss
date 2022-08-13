@@ -1,5 +1,152 @@
+@import '../../variables.scss';
+// .songs-page {
+//   flex-grow: 1;
+//   color: white;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: start;
+//   align-items: flex-start;
+// }
+
+// #canvas {
+//   width: 100%;
+//   // height: 200px;
+//   box-sizing: border-box;
+//   // background-image: url('../../../../setka.png');
+//   object-fit: cover;
+// }
+
 .songs-page {
-  border: 1px solid red;
-  flex-grow: 1;
-  color: white;
+  // border: 1px solid red;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: max-content;
+  margin: auto 0;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(
+      180deg,
+      rgba(25, 27, 37, 0.0727273) 0%,
+      rgba(25, 27, 37, 0) 64.06%,
+      #191b25 100%
+    );
+  }
+  &__list {
+    // border: 1px solid green;
+    overflow-y: scroll;
+    height: 450px;
+    //width: 460px;
+    flex-shrink: 0;
+
+    @include scroll();
+    direction: rtl;
+
+    @media screen and (max-width: 1440px) {
+      height: 300px;
+    }
+  }
+
+  &__song-name {
+    @include fontText(normal, 300, 48px, 59px);
+    color: #7c83a1;
+
+    @media screen and (max-width: 1440px) {
+      @include fontText(normal, 300, 32px, 126%);
+    }
+  }
+
+  &__song-date {
+    @include fontText(normal, 600, 14px, 17px);
+    text-transform: uppercase;
+    color: #7c83a1;
+  }
+
+  &__li {
+    // border: 1px solid blue;
+    height: 150px;
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+
+    &--active {
+      .songs-page__song-name {
+        color: #da4f4f;
+      }
+
+      .songs-page__song-date {
+        color: #da4f4f;
+      }
+    }
+
+    @media screen and (max-width: 1440px) {
+      height: 100px;
+      margin-left: 30px;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 40px;
+  }
+
+  &__audio-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1320px) {
+      flex-direction: column;
+    }
+  }
+  &__audio-info-container {
+    display: flex;
+  }
+
+  &__audio-field-container {
+    margin-right: 50px;
+
+    @media screen and (max-width: 1320px) {
+      margin-right: 30px;
+    }
+  }
+
+  &__audio-field {
+    @include fontText(normal, 400, 18px, 22px);
+
+    color: #52597a;
+  }
+  &__audio-value {
+    @include fontText(normal, 400, 18px, 22px);
+
+    color: #7c83a1;
+  }
+
+  &__icon-container {
+    display: flex;
+
+    img {
+      width: 32px;
+      height: 32px;
+      margin-right: 50px;
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    @media screen and (max-width: 1320px) {
+      width: 100%;
+      justify-content: right;
+      margin-top: 10px;
+    }
+  }
 }
