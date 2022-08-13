@@ -35,9 +35,8 @@ const AudioContainer = ({
   useEffect(() => {
     //логика остановки и очистки прошлого трека
 
-    console.log('switchFlag', switchFlag);
-
     if (audioRef?.current && audio !== audioProp && switchFlag) {
+      setAudio(audioProp);
       audioRef.current.src = audioProp;
       audioRef.current.currentTime = 0;
 
@@ -48,7 +47,6 @@ const AudioContainer = ({
       setAnimCanvas(true);
       playHandler();
     } else if (audioRef?.current && audio !== audioProp) {
-      console.log('audioRef.current', audioRef.current);
       // clearInterval(audioInterval);
       // setAaudioInterval(null);
       setAnimCanvas(false);
@@ -58,45 +56,41 @@ const AudioContainer = ({
       audioRef.current.currentTime = 0;
       setAudioTime(0);
       setAudioWidthTrack('0%');
-      console.log('setAudioLength 0!!');
       setAudioLength(0);
     }
   }, [audioProp]);
 
   useEffect(() => {
     return () => {
-      clearInterval(audioInterval);
+      pauseHandler();
     };
-  });
+  }, []);
+
+  const setDurationAudio = () => {
+    if (audioRef?.current.duration) {
+      setAudioLength(Math.round(audioRef.current.duration));
+    } else {
+      setTimeout(() => {
+        setDurationAudio();
+      }, 10);
+    }
+  };
 
   const playHandler = () => {
     const audio = audioRef?.current;
-    console.log('audio.duration', audio.duration);
 
     if (audio) {
       audio.play();
       let audioTime = 0;
-      setAudioLength(Math.round(audio.duration));
 
-      // if (audioInterval) {
-      //   clearInterval(audioInterval);
-      // }
-
+      setDurationAudio();
       const audioInterval2 = setInterval(() => {
         // Получаем значение на какой секунде песня
         audioTime = Math.round(audio.currentTime);
 
-        console.log('audioLength', audioLength);
-
         setAudioTime(audioTime);
         setAudioWidthTrack((audioTime * 100) / audio.duration + '%');
-
-        if (isNaN(audioLength)) {
-          console.log('audioLength is Nan', audio.duration);
-          //setAudioLength(Math.round(audio.duration));
-        }
       }, 10);
-      // console.log('audioInterval', audioInterval);
       setAaudioInterval(audioInterval2);
     }
   };
@@ -105,7 +99,6 @@ const AudioContainer = ({
     const audio = audioRef?.current;
     if (audio) {
       audio.pause();
-      // console.log('audioInterval', audioInterval);
       clearInterval(audioInterval);
       setAaudioInterval(null);
     }
@@ -118,15 +111,12 @@ const AudioContainer = ({
     const max = target.max;
     const val = target.value;
     target.style.backgroundSize = ((val - min) * 100) / (max - min) + '% 100%';
-    // console.log('target.value', target.value);
     if (audioRef?.current) {
       audioRef.current.volume = target.value;
     }
   };
 
   const formatTime = (time) => {
-    console.log('time', time);
-
     let second = time % 60;
     second = second < 10 ? `0${second}` : second;
     let minutes = Math.trunc(time / 60);
@@ -134,9 +124,12 @@ const AudioContainer = ({
   };
 
   const switchTreck = (flag = 'next') => {
-    console.log('switchTreck', flag);
     setSwitchFlag(true);
-    changeAudio(activeSong + 1);
+    if (flag === 'next') {
+      changeAudio(activeSong + 1);
+    } else {
+      changeAudio(activeSong - 1);
+    }
   };
 
   return (
@@ -153,6 +146,10 @@ const AudioContainer = ({
           }}
         >
           <div className="audio-container__audio-point"></div>
+        </div>
+        <div className="audio-container__time audio-container__time--mobile">
+          <time>{formatTime(audioTime)}</time>
+          <time>{formatTime(audioLength)}</time>
         </div>
       </div>
 

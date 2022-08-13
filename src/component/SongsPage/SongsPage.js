@@ -2,9 +2,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './SongsPage.scss';
 import AudioContainer from './modules/AudioContainer';
+import { Transition } from 'react-transition-group';
 import audoiIcon from '../../public/audio-info.svg';
 import audoiIcon2 from '../../public/audio-info-2.svg';
 import audoiIcon3 from '../../public/audio-info-3.svg';
+import wavesBackground from '../../public/wavesBackground.png';
 
 import audio1 from '../../public/audio1.mp3';
 import audio2 from '../../public/audio2.mp3';
@@ -70,9 +72,13 @@ const songsArr = [
 
 const SongsPage = () => {
   const [activeSong, setActiveSong] = useState(0);
+  const [animMenu, setAnimMenu] = useState(true);
+  const [animSong, setAnimSong] = useState(false);
 
   return (
     <div className="songs-page">
+      {/* DESKTOP */}
+
       <ul className="songs-page__list">
         {songsArr.map((item, index) => (
           <li
@@ -94,6 +100,7 @@ const SongsPage = () => {
         <AudioContainer
           audioProp={songsArr[activeSong].audio}
           changeAudio={(index) => {
+            console.log('changeAudio', index);
             setActiveSong(index);
           }}
           songsLength={songsArr.length}
@@ -140,6 +147,121 @@ const SongsPage = () => {
         </div>
       </div>
 
+      {/* DESKTOP */}
+
+      {/* MOBILE */}
+
+      <Transition
+        in={animMenu}
+        timeout={1000}
+        //  moutOnEnter
+        unmountOnExit
+      >
+        {(state) => (
+          <div className={`songs-page__menu songs-page__menu--${state}`}>
+            <h1 className="songs-page__title">Songs</h1>
+            <ul className="songs-page__list songs-page__list--mobile">
+              {songsArr.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => {
+                    setActiveSong(index);
+                    setAnimMenu(false);
+                    setAnimSong(true);
+                    window.scroll({
+                      left: 0,
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                  className={`songs-page__li ${
+                    index === activeSong - 1 ? 'songs-page__li--active' : ''
+                  }`}
+                >
+                  <p className="songs-page__song-name">{item.title}</p>
+                  <time className="songs-page__song-date">
+                    {item.releaseDate}
+                  </time>
+                </li>
+              ))}
+            </ul>
+
+            <img
+              src={wavesBackground}
+              alt="waves background"
+              className="songs-page__waves-background"
+            />
+          </div>
+        )}
+      </Transition>
+
+      <Transition in={animSong} timeout={1000}>
+        {(state) => (
+          <>
+            {animSong ? (
+              <div
+                className={`songs-page__audio-container songs-page__audio-container--${state}`}
+                // ref={refPoem}
+              >
+                <h2 className="songs-page__name-mobile">
+                  {songsArr[activeSong].title}
+                </h2>
+                <AudioContainer
+                  audioProp={songsArr[activeSong].audio}
+                  changeAudio={(index) => {
+                    setActiveSong(index);
+                  }}
+                  songsLength={songsArr.length}
+                  activeSong={activeSong}
+                />
+
+                <div className="songs-page__audio-info-container">
+                  <p className="songs-page__audio-field">
+                    Lyrics, music, arrangement:
+                    <span className="songs-page__audio-value">
+                      {songsArr[activeSong].Lyrics}
+                    </span>
+                  </p>
+
+                  <p className="songs-page__audio-field">
+                    Recording performance:{' '}
+                    <span
+                      className="songs-page__audio-value"
+                      dangerouslySetInnerHTML={{
+                        __html: songsArr[activeSong].recordingPerformance,
+                      }}
+                    ></span>{' '}
+                  </p>
+
+                  <p className="songs-page__audio-field">
+                    Recording, mixing, mastering:
+                    <span className="songs-page__audio-value">
+                      {songsArr[activeSong].Recording}
+                    </span>
+                  </p>
+                  <p className="songs-page__audio-field">
+                    Release date:{' '}
+                    <span className="songs-page__audio-value">
+                      {songsArr[activeSong].releaseDate}
+                    </span>
+                  </p>
+                </div>
+
+                <div className="songs-page__icon-container">
+                  <img src={audoiIcon} alt="" />
+                  <img src={audoiIcon2} alt="" />
+                  <img src={audoiIcon3} alt="" />
+                </div>
+              </div>
+            ) : null}
+          </>
+        )}
+      </Transition>
+
+      {/* END MOBILE */}
+
+      <div className="songs-page__shadow-up"></div>
+      <div className="songs-page__shadow-down"></div>
     </div>
   );
 };

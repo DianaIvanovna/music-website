@@ -21,12 +21,15 @@ class CanvasComponent extends React.Component {
 
   componentDidUpdate() {
     // console.log('this.props.animCanvas', this.animStart, this.props.animCanvas);
+
+    //this.animCanvas();
+
     if (this.animStart !== this.props.animCanvas) {
       this.animStart = this.props.animCanvas;
+
       if (this.props.animCanvas) {
         this.animCanvas();
       } else {
-        // console.log('window.cancelAnimationFrame', window.cancelAnimationFrame);
         window.cancelAnimationFrame(this.requestID);
       }
     }
@@ -62,6 +65,37 @@ class CanvasComponent extends React.Component {
     );
     this.gradient3.addColorStop(0.0, '#7C8ACB');
     this.gradient3.addColorStop(1.0, '#9375B9');
+
+    /*
+    Амплитуда:
+        amplitude max - 100 min - -100
+    Частота:
+        frequency max - (this.width / (2 * Math.PI))*1 min = (this.width / (2 * Math.PI))*0.4
+    Смещение по горизонтали:
+        offset
+
+    this.drawCurves(
+      -100,
+      'sin',
+      this.gradient1,
+      (this.width / (2 * Math.PI)) * 0.4,
+      0
+    );
+    this.drawCurves(
+      100,
+      'sin',
+      this.gradient2,
+      (this.width / (2 * Math.PI)) * 0.4,
+      0
+    );
+    this.drawCurves(
+      0,
+      'sin',
+      this.gradient3,
+      (this.width / (2 * Math.PI)) * 1,
+      0
+    );
+    */
 
     this.drawCurves(
       40,

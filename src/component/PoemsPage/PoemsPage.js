@@ -231,7 +231,7 @@ const PoemsPage = () => {
                   className={`poems-page__poem-mobile poems-page__poem-mobile--${state}`}
                   ref={refPoem}
                 >
-                  <h1 className="poems-page__subtitle"> 
+                  <h1 className="poems-page__subtitle">
                     {poemsArr[activePoem - 1].title}
                   </h1>
 
