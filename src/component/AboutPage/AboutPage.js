@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AboutPage.scss';
 import { Transition } from 'react-transition-group';
 import mainPhoto from '../../public/mainPhoto.png';
@@ -30,6 +30,14 @@ const AboutPage = () => {
   const timeAnim = 2000;
 
   console.log('step-', step, ' prevStep-', prevStep);
+
+  useEffect(() => {
+    document.getElementById('root').className = 'root root--100';
+
+    return () => {
+      document.getElementById('root').className = 'root';
+    };
+  }, []);
 
   const scrollHandler = (event) => {
     if (!blockScroll) {

@@ -145,6 +145,14 @@ const PoemsPage = () => {
   const [animMenu, setAnimMenu] = useState(true);
 
   useEffect(() => {
+    document.getElementById('root').className = 'root root--100';
+
+    return () => {
+      document.getElementById('root').className = 'root';
+    };
+  }, []);
+
+  useEffect(() => {
     if (activePoem && poemsArr[activePoem - 1]) {
       if (refPoem) {
         refPoem.current.scrollTop = 0;

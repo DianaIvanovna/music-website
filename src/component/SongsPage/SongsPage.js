@@ -22,6 +22,10 @@ const songsArr = [
       'Vocals, guitars, bass – Sergey Shmidt <br/> Drums – Bastian Arac',
     Recording: 'scb-music',
     releaseDate: '01/11/2021',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
   {
     title: 'FATE',
@@ -31,6 +35,10 @@ const songsArr = [
       '2.Vocals, guitars, bass – Sergey Shmidt Drums – Bastian Arac',
     Recording: '2.scb-music',
     releaseDate: '01/07/2022',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
   {
     title: 'В Am я тебе, брат',
@@ -40,6 +48,10 @@ const songsArr = [
       '3.Vocals, guitars, bass – Sergey Shmidt Drums – Bastian Arac',
     Recording: '3.scb-music',
     releaseDate: '01/10/2022',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
   {
     title: 'ПЕСНЯ №4',
@@ -49,6 +61,10 @@ const songsArr = [
       '4.Vocals, guitars, bass – Sergey Shmidt Drums – Bastian Arac',
     Recording: '4.scb-music',
     releaseDate: '01/11/2021',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
   {
     title: 'ПЕСНЯ №5',
@@ -58,6 +74,10 @@ const songsArr = [
       '5.Vocals, guitars, bass – Sergey Shmidt Drums – Bastian Arac',
     Recording: '5.scb-music',
     releaseDate: '01/11/2021',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
   {
     title: 'ПЕСНЯ №6',
@@ -67,6 +87,10 @@ const songsArr = [
       '6.Vocals, guitars, bass – Sergey Shmidt Drums – Bastian Arac',
     Recording: '6.scb-music',
     releaseDate: '01/11/2021',
+    spotify: 'https://open.spotify.com/album/3aYe9WeszUGbFqw3bo7Cx5',
+    appleMusic: 'https://music.apple.com/us/album/по-городу-single/1624085601',
+    youtube:
+      'https://music.youtube.com/playlist?list=OLAK5uy_lfJ1EusWQOwm17DbfSyxgzZ2kDi-44F68',
   },
 ];
 
@@ -140,9 +164,30 @@ const SongsPage = () => {
           </div>
 
           <div className="songs-page__icon-container">
-            <img src={audoiIcon} alt="" />
-            <img src={audoiIcon2} alt="" />
-            <img src={audoiIcon3} alt="" />
+            <a
+              href={songsArr[activeSong].spotify}
+              alt="Spotify"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={audoiIcon} alt="Spotify" />
+            </a>
+            <a
+              href={songsArr[activeSong].appleMusic}
+              alt="Spotify"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={audoiIcon2} alt="appleMusic" />
+            </a>
+            <a
+              href={songsArr[activeSong].youtube}
+              alt="youtube"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={audoiIcon3} alt="youtube" />
+            </a>
           </div>
         </div>
       </div>
@@ -248,9 +293,30 @@ const SongsPage = () => {
                 </div>
 
                 <div className="songs-page__icon-container">
-                  <img src={audoiIcon} alt="" />
-                  <img src={audoiIcon2} alt="" />
-                  <img src={audoiIcon3} alt="" />
+                  <a
+                    href={songsArr[activeSong].spotify}
+                    alt="Spotify"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={audoiIcon} alt="Spotify" />
+                  </a>
+                  <a
+                    href={songsArr[activeSong].appleMusic}
+                    alt="Spotify"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={audoiIcon2} alt="appleMusic" />
+                  </a>
+                  <a
+                    href={songsArr[activeSong].youtube}
+                    alt="youtube"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img src={audoiIcon3} alt="youtube" />
+                  </a>
                 </div>
               </div>
             ) : null}

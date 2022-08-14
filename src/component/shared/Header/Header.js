@@ -6,7 +6,7 @@ import menu from '../../../public/menu.svg';
 
 const Header = (props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   return (
     <header className={`header ${showMenu ? 'header--black' : ''}`}>

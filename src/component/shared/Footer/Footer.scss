@@ -43,9 +43,19 @@
       margin: 0 45px;
     }
 
-    &:last-of-type {
+    &--end {
       &::after {
         display: none;
+      }
+    }
+
+    &--linktree {
+      img {
+        width: 26px;
+        height: 26px;
+        object-fit: cover;
+        border: 1px solid #7c83a1;
+        border-radius: 7px;
       }
     }
   }

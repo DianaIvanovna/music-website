@@ -1,0 +1,136 @@
+@import '../../../variables.scss';
+
+.popup-info {
+  width: 90%;
+  max-width: 800px;
+  //height: 666px;
+  background: #20212c;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px 100px;
+
+  @media screen and (min-width: 768px) and (max-height: 800px) {
+    padding: 40px 20px 0;
+  }
+
+  &__back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(25, 27, 37, 0.9);
+
+    z-index: 20;
+  }
+
+  &__field {
+    margin-bottom: 40px;
+  }
+
+  &__name {
+    @include fontText(normal, 600, 18px, 22px);
+    text-transform: uppercase;
+    color: #52597a;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  &__value {
+    @include fontText(normal, 300, 32px, 48px);
+
+    color: #aaafc6;
+    text-align: center;
+  }
+
+  &__elipse-1 {
+    width: 471px;
+    height: 471px;
+    background: linear-gradient(71.44deg, #daa24f 23.27%, #da4f68 78.12%);
+    opacity: 0.2;
+
+    position: absolute;
+    bottom: -30%;
+    right: -30%;
+
+    border-radius: 50%;
+    filter: blur(70px);
+  }
+  &__elipse-2 {
+    width: 315px;
+    height: 315px;
+    background: linear-gradient(71.44deg, #daa24f 23.27%, #da4f68 78.12%);
+    opacity: 0.2;
+
+    position: absolute;
+    top: -15%;
+    left: -15%;
+
+    border-radius: 50%;
+    filter: blur(70px);
+  }
+
+  &__back-button {
+    display: none;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    // background: #191B25;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+
+    padding-top: 200px;
+
+    &__back {
+      background: #191b25;
+      z-index: 2;
+    }
+
+    &__elipse-1 {
+      display: none;
+    }
+    &__elipse-2 {
+      display: none;
+    }
+
+    &__back-button {
+      display: flex;
+      align-items: center;
+      @include fontText(normal, 600, 18px, 22px);
+      text-transform: uppercase;
+
+      /* Main/Red */
+
+      color: #da4f4f;
+
+      svg {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-top: 100px;
+    &__name {
+      @include fontText(normal, 600, 14px, 17px);
+    }
+
+    &__value {
+      @include fontText(normal, 300, 24px, 36px);
+    }
+  }
+}

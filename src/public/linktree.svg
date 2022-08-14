@@ -1,0 +1,25 @@
+<svg
+            title="linktree"
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+            class="styles__StyledSvg-sc-1ltrhwn-0 lmXVzg"
+          >
+            <g clip-path="url(#clip0_4763_180814)">
+              <path
+                d="M25.8812 17.341L30.2197 12.8811L32.7379 15.4599L28.187 19.7985H34.5886V23.3785H28.1566L32.7379 27.8283L30.2197 30.3566L24.0001 24.1067L17.7805 30.3566L15.2623 27.8384L19.8436 23.3886H13.4116V19.7985H19.8133L15.2623 15.4599L17.7805 12.8811L22.1191 17.341V11H25.8812V17.341ZM22.1191 28.5059H25.8812V37.001H22.1191V28.5059Z"
+                fill="#7C83A1"
+              ></path>
+            </g>
+            <defs>
+              <clipPath id="clip0_4763_180814">
+                <rect
+                  width="36"
+                  height="26"
+                  fill="white"
+                  transform="translate(6 11)"
+                ></rect>
+              </clipPath>
+            </defs>
+          </svg>
