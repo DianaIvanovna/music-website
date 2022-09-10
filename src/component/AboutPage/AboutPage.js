@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AboutPage.scss';
+import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import mainPhoto from '../../public/mainPhoto.png';
 import mainPhotoTablet from '../../public/mainPhoto-tablet.png';
@@ -8,52 +9,35 @@ import mainPhotoMobile from '../../public/mainPhoto-mobile.png';
 import mainPhoto2 from '../../public/mainPhoto2.png';
 import mainPhoto2Tablet from '../../public/mainPhoto2-tablet.png';
 import mainPhoto2Mobile from '../../public/mainPhoto2-mobile.png';
-import Sergey from '../../public/Sergey.svg';
-import Shmidt from '../../public/Shmidt.svg';
-import number20 from '../../public/number20.svg';
-import practice from '../../public/practice.svg';
-import focus from '../../public/focus.svg';
 
 const AboutPage = () => {
   const [blockScroll, setBlockScroll] = useState(false);
   const [step, setStep] = useState(0);
   const [animItem, setAnimItem] = useState(-1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (step === 0) {
+      navigate('/');
+    } else {
+      navigate('/?anim=1');
+    }
+  }, [step]);
 
   const [prevStep, setPrevStep] = useState(7);
+  const [touchPos, setTouchPos] = useState(null);
   const [mobile, setMobile] = useState(() => {
     if (window.innerWidth <= 600) {
       return true;
     }
     return false;
   });
-
   const timeAnim = 2000;
-
-  console.log('step-', step, ' prevStep-', prevStep);
-
-  useEffect(() => {
-    document.getElementById('root').className = 'root root--100';
-
-    return () => {
-      document.getElementById('root').className = 'root';
-    };
-  }, []);
+  const timeAnim2 = 1000;
 
   const scrollHandler = (event) => {
     if (!blockScroll) {
-      if (event.deltaY < 0 && step !== 8) {
-        console.log('Scroll!', step);
-        setStep((value) => {
-          setPrevStep(value);
-          return value + 1;
-        });
-        setBlockScroll(true);
-        setTimeout(() => {
-          setBlockScroll(false);
-        }, 2500);
-      }
-      if (event.deltaY > 0 && step !== 0) {
-        console.log('Scroll!', step);
+      if (event.deltaY < 0 && step !== 0) {
         setStep((value) => {
           setPrevStep(value);
           return value - 1;
@@ -63,28 +47,60 @@ const AboutPage = () => {
           setBlockScroll(false);
         }, 2500);
       }
+      if (event.deltaY > 0 && step !== 4) {
+        setStep((value) => {
+          setPrevStep(value);
+          return value + 1;
+        });
+        setBlockScroll(true);
+        setTimeout(() => {
+          setBlockScroll(false);
+        }, 2500);
+      }
     }
   };
 
-  return (
-    <div
-      className={`about-page about-page__anim--step-${step + 1}`}
-      onWheel={(event) => {
-        scrollHandler(event);
-      }}
-    >
-      <Transition
-        in={step === 0}
-        timeout={timeAnim}
-        //  moutOnEnter
-        unmountOnExit
-      >
-        {(state) => (
-          <div
-            className={`about-page__block-1 ${
-              state ? `about-page__block-1--${state}` : ''
-            }`}
-          >
+  const scrollMobileEndHandler = (event) => {
+    if (touchPos && !blockScroll) {
+      let newTouchPos = event.changedTouches[0].clientY;
+      if (newTouchPos > touchPos && step !== 0) {
+        setStep((value) => {
+          setPrevStep(value);
+          return value - 1;
+        });
+        setBlockScroll(true);
+        setTimeout(() => {
+          setBlockScroll(false);
+        }, 2500);
+      }
+      if (newTouchPos < touchPos && step !== 4) {
+        setStep((value) => {
+          setPrevStep(value);
+          return value + 1;
+        });
+        setBlockScroll(true);
+        setTimeout(() => {
+          setBlockScroll(false);
+        }, 2500);
+      }
+
+      setTouchPos(null);
+    }
+  };
+
+  const scrollMobileStartHandler = (event) => {
+    setTouchPos(event.changedTouches[0].clientY);
+  };
+
+  const block1 = (
+    <Transition in={step === 0} timeout={timeAnim} unmountOnExit>
+      {(state) => (
+        <div
+          className={`about-page__block-container ${
+            state ? `about-page__block-container--${state}` : ''
+          }`}
+        >
+          <div className={`about-page__block-1`}>
             <p className="about-page__text">
               musician.poet.
               <br />
@@ -97,108 +113,13 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-        )}
-      </Transition>
-
-      <div className="about-page__tablet-scroll-container">
-        <div className="about-page__scroll">
-          <div
-            className={`about-page__tablet-scroll-line about-page__tablet-scroll-line--${step}`}
-          ></div>
-          <div className="about-page__tablet-scroll-pointer"></div>
         </div>
-        <p className="about-page__scroll-text">scroll</p>
-      </div>
+      )}
+    </Transition>
+  );
 
-      <Transition
-        in={step === 0}
-        timeout={timeAnim}
-        //  moutOnEnter
-        unmountOnExit
-      >
-        {(state) => (
-          <div
-            className={`about-page__block-2 ${
-              state ? `about-page__block-2--${state}` : ''
-            }`}
-          >
-            <img
-              src={Sergey}
-              className="about-page__block-2-first-name"
-              alt="Sergey"
-            />
-            <img
-              src={Shmidt}
-              className="about-page__block-2-full-name"
-              alt="Shmidt"
-            />
-          </div>
-        )}
-      </Transition>
-
-      <Transition
-        in={step === 1 || step === 2}
-        timeout={timeAnim}
-        //  moutOnEnter
-        unmountOnExit
-      >
-        {(state) => (
-          <p
-            className={`about-page__block-4 ${
-              state ? `about-page__block-4--${state}-${step}` : ''
-            }`}
-          >
-            20
-          </p>
-        )}
-      </Transition>
-
-      <Transition
-        in={step === 3 || step === 4}
-        timeout={timeAnim}
-        //  moutOnEnter
-        unmountOnExit
-      >
-        {(state) => (
-          <p
-            className={`about-page__block-5 ${
-              state ? `about-page__block-5--${state}-${step}` : ''
-            }`}
-          >
-            {mobile ? (
-              'practice'
-            ) : (
-              <>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prac-
-                <br />
-                tice
-              </>
-            )}
-          </p>
-        )}
-      </Transition>
-      <Transition
-        in={step === 5 || step === 6}
-        timeout={timeAnim}
-        //  moutOnEnter
-        unmountOnExit
-      >
-        {(state) => (
-          <p
-            className={`about-page__block-19 ${
-              state ? `about-page__block-19--${state}-${step}` : ''
-            }`}
-          >
-            focus
-          </p>
-        )}
-      </Transition>
-
-      {/* <img src={practice} alt="practice" className="about-page__item-5" /> */}
-      {/* <div>
-        <img src={focus} alt="focus" className="about-page__item-9" />
-      </div> */}
-
+  const textContainer = (
+    <>
       <p
         className={`about-page__text-block  about-page__block-6 about-page__block-6--${prevStep}-${step}`}
       >
@@ -219,7 +140,7 @@ const AboutPage = () => {
         className={`about-page__text-block  about-page__block-8 about-page__block-8--${prevStep}-${step}`}
       >
         <span>In the following years my focus was </span> to master{' '}
-        <span>drums, electric and bass guitar</span>
+        <span>drums, electric and bass guitar.</span>
       </p>
 
       <div
@@ -229,11 +150,146 @@ const AboutPage = () => {
           <span>Since 2020 I've been working on</span> writing my own{' '}
           <span>songs and poems. I think you’ll enjoy it!</span>
         </p>
-        <button className="about-page__button">Listen</button>
+        <button
+          className="about-page__button"
+          onClick={() => {
+            return navigate('/songs');
+          }}
+        >
+          Listen
+        </button>
       </div>
+    </>
+  );
+
+  const avatar1 = (
+    <Transition in={step === 0} timeout={timeAnim}>
+      {(state) => (
+        <picture
+          className={`about-page__img-block-1 ${
+            state ? `about-page__img-block-1--${state}` : ''
+          }`}
+        >
+          <source srcSet={mainPhoto} media="(min-width: 1041px)" />
+          <source srcSet={mainPhotoTablet} media="(min-width: 600px)" />
+
+          <img srcSet={mainPhotoMobile} alt="avatar" />
+        </picture>
+      )}
+    </Transition>
+  );
+
+  const avatar2 = (
+    <Transition
+      in={step === 4}
+      timeout={{
+        appear: 1000,
+        enter: 1000,
+        exit: timeAnim,
+      }}
+      unmountOnExit
+    >
+      {(state) => (
+        <picture
+          className={`about-page__img-block-2 ${
+            state ? `about-page__img-block-2--${state}` : ''
+          }`}
+        >
+          <source srcSet={mainPhoto2} media="(min-width: 1024px)" />
+          <source srcSet={mainPhoto2Tablet} media="(min-width: 600px)" />
+
+          <img srcSet={mainPhoto2Mobile} alt="avatar" />
+        </picture>
+      )}
+    </Transition>
+  );
+
+  const block4 = (
+    <Transition
+      in={step === 1}
+      timeout={timeAnim}
+      //  moutOnEnter
+      unmountOnExit
+    >
+      {(state) => (
+        <p
+          className={`about-page__block-4 ${
+            state ? `about-page__block-4--${prevStep}-${step}` : ''
+          }`}
+        >
+          20
+        </p>
+      )}
+    </Transition>
+  );
+  const block5 = (
+    <Transition
+      in={step === 2}
+      timeout={timeAnim}
+      //  moutOnEnter
+      unmountOnExit
+    >
+      {(state) => (
+        <p
+          className={`about-page__block-5 ${
+            state ? `about-page__block-5--${prevStep}-${step}` : ''
+          }`}
+        >
+          {mobile ? (
+            'practice'
+          ) : (
+            <>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prac-
+              <br />
+              tice
+            </>
+          )}
+        </p>
+      )}
+    </Transition>
+  );
+
+  const block19 = (
+    <Transition
+      in={step === 3}
+      timeout={timeAnim}
+      //  moutOnEnter
+      unmountOnExit
+    >
+      {(state) => (
+        <p
+          className={`about-page__block-19 ${
+            state ? `about-page__block-19--${prevStep}-${step}` : ''
+          }`}
+        >
+          focus
+        </p>
+      )}
+    </Transition>
+  );
+
+  return (
+    <div
+      className={`about-page about-page__anim--step-${step + 1}`}
+      onWheel={(event) => {
+        scrollHandler(event);
+      }}
+      onTouchStart={(event) => {
+        scrollMobileStartHandler(event);
+      }}
+      onTouchMove={(event) => {
+        scrollMobileEndHandler(event);
+      }}
+    >
+      {block1}
+
+      {textContainer}
+      {block4}
+      {block5}
+      {block19}
 
       <Transition
-        in={step >= 2 && step <= 9}
+        in={step >= 1 && step <= 9}
         timeout={{
           appear: 1000,
           enter: 1000,
@@ -263,29 +319,46 @@ const AboutPage = () => {
         )}
       </Transition>
 
-      {/* <Transition
-        in={step === 0}
-        timeout={timeAnim}
-        //  moutOnEnter
-      >
+      <Transition in={step === 0} timeout={timeAnim} unmountOnExit>
         {(state) => (
-          <picture
-            className={`about-page__img-block-1 ${
-              state ? `about-page__img-block-1--${state}` : ''
+          <div
+            className={`about-page__block-2-container ${
+              state ? `about-page__block-2-container--${state}` : ''
             }`}
           >
-            <source srcSet={mainPhoto} media="(min-width: 1041px)" />
-            <source srcSet={mainPhotoTablet} media="(min-width: 600px)" />
+            <div className="about-page__block-2">
+              <div className="about-page__container">
+                {block1}
+                <p className="about-page__block-2-first-name">Sergey</p>
+              </div>
 
-            <img srcSet={mainPhotoMobile} alt="avatar" />
-          </picture>
+              <p className="about-page__block-2-full-name">Shmidt</p>
+            </div>
+          </div>
         )}
-      </Transition> */}
-      {/* <div className="about-page__img-2">
-        <img src={mainPhoto2} alt="avatar" />
-      </div> */}
-      {/* <div className="about-page__circle"></div> */}
+      </Transition>
 
+      <div className="about-page__tablet-scroll-container">
+        <div className="about-page__scroll">
+          <div
+            className={`about-page__tablet-scroll-line about-page__tablet-scroll-line--${
+              step + 1
+            }`}
+          ></div>
+          <div
+            className={`about-page__scroll-pointer about-page__scroll-pointer--${
+              step + 1
+            }`}
+          ></div>
+        </div>
+        <p className="about-page__scroll-text">scroll</p>
+      </div>
+
+      {avatar1}
+
+      {avatar2}
+
+      {/* <div className={`about-page__circle-1 `}></div> */}
       <Transition in={step === 0} timeout={timeAnim}>
         {(state) => (
           <div
@@ -295,43 +368,7 @@ const AboutPage = () => {
           ></div>
         )}
       </Transition>
-
-      <Transition in={step === 0} timeout={timeAnim}>
-        {(state) => (
-          <picture
-            className={`about-page__img-block-1 ${
-              state ? `about-page__img-block-1--${state}` : ''
-            }`}
-          >
-            <source srcSet={mainPhoto} media="(min-width: 1041px)" />
-            <source srcSet={mainPhotoTablet} media="(min-width: 600px)" />
-
-            <img srcSet={mainPhotoMobile} alt="avatar" />
-          </picture>
-        )}
-      </Transition>
-      <Transition
-        in={step === 8}
-        timeout={{
-          appear: 1000,
-          enter: 1000,
-          exit: timeAnim,
-        }}
-        unmountOnExit
-      >
-        {(state) => (
-          <picture
-            className={`about-page__img-block-2 ${
-              state ? `about-page__img-block-2--${state}` : ''
-            }`}
-          >
-            <source srcSet={mainPhoto2} media="(min-width: 1024px)" />
-            <source srcSet={mainPhoto2Tablet} media="(min-width: 600px)" />
-
-            <img srcSet={mainPhoto2Mobile} alt="avatar" />
-          </picture>
-        )}
-      </Transition>
+      <div className="about-page__line"></div>
     </div>
   );
 };

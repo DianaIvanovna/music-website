@@ -13,6 +13,9 @@ class CanvasComponent extends React.Component {
     this.step = -5;
     this.requestID = null;
     this.animStart = props.animCanvas;
+
+    this.frame = 0;
+    this.parameters = props.parametersProp;
   }
 
   componentDidMount() {
@@ -28,17 +31,26 @@ class CanvasComponent extends React.Component {
       this.animStart = this.props.animCanvas;
 
       if (this.props.animCanvas) {
-        this.animCanvas();
+        this.frame = 0;
+        this.animCanvas(0);
       } else {
         window.cancelAnimationFrame(this.requestID);
       }
+    }
+
+    if (this.parameters !== this.props.parametersProp) {
+      this.parameters = this.props.parametersProp;
+      this.updateCanvas();
     }
   }
 
   updateCanvas() {
     this.canvasContext = this.canvasRef.current.getContext('2d');
+
     this.width = this.canvasRef.current.width;
     this.height = this.canvasRef.current.height;
+
+    this.canvasContext.clearRect(0, 0, this.width, this.height);
 
     this.gradient1 = this.canvasContext.createLinearGradient(
       0,
@@ -66,57 +78,33 @@ class CanvasComponent extends React.Component {
     this.gradient3.addColorStop(0.0, '#7C8ACB');
     this.gradient3.addColorStop(1.0, '#9375B9');
 
-    /*
-    Амплитуда:
-        amplitude max - 100 min - -100
-    Частота:
-        frequency max - (this.width / (2 * Math.PI))*1 min = (this.width / (2 * Math.PI))*0.4
-    Смещение по горизонтали:
-        offset
+    // Амплитуда:
+    //     amplitude max - 100 min - -100
+    // Частота:
+    //     frequency max - (this.width / (2 * Math.PI))*1 min = (this.width / (2 * Math.PI))*0.4
+    // Смещение по горизонтали:
+    //     offset
 
     this.drawCurves(
-      -100,
+      this.parameters[0].amplitude,
       'sin',
       this.gradient1,
-      (this.width / (2 * Math.PI)) * 0.4,
-      0
+      (this.width / (2 * Math.PI)) * this.parameters[0].frequency,
+      this.parameters[0].offset
     );
     this.drawCurves(
-      100,
+      this.parameters[1].amplitude,
       'sin',
       this.gradient2,
-      (this.width / (2 * Math.PI)) * 0.4,
-      0
+      (this.width / (2 * Math.PI)) * this.parameters[1].frequency,
+      this.parameters[1].offset
     );
     this.drawCurves(
-      0,
+      this.parameters[2].amplitude,
       'sin',
       this.gradient3,
-      (this.width / (2 * Math.PI)) * 1,
-      0
-    );
-    */
-
-    this.drawCurves(
-      40,
-      'sin',
-      this.gradient1,
-      (this.width / (2 * Math.PI)) * 0.8,
-      200
-    );
-    this.drawCurves(
-      20,
-      'cos',
-      this.gradient2,
-      (this.width / (2 * Math.PI)) * 0.5,
-      50
-    );
-    this.drawCurves(
-      20,
-      'sin',
-      this.gradient3,
-      (this.width / (2 * Math.PI)) * 1,
-      0
+      (this.width / (2 * Math.PI)) * this.parameters[2].frequency,
+      this.parameters[2].offset
     );
   }
 
@@ -151,30 +139,50 @@ class CanvasComponent extends React.Component {
     this.canvasContext.restore();
   };
 
-  animCanvas = () => {
+  animCanvas = (props) => {
     this.requestID = window.requestAnimationFrame(this.animCanvas);
     this.canvasContext.clearRect(0, 0, this.width, this.height);
 
+    if (Math.floor(props / 1000) !== this.frame) {
+      // каждую секунду меняю амплитуду/частоту
+      this.frame = Math.floor(props / 1000);
+
+      this.parameters.forEach((item) => {
+        if (item.amplitudeIncrease) {
+          item.amplitude++;
+        } else {
+          item.amplitude--;
+        }
+        if (item.amplitude === item.amplitudeMax) {
+          item.amplitudeIncrease = false;
+        } else if (item.amplitude === item.amplitudeMin) {
+          item.amplitudeIncrease = true;
+        }
+      });
+
+      console.log('this.parameters1.amplitude', this.parameters[1].amplitude);
+    }
+
     this.drawCurves(
-      40,
+      this.parameters[0].amplitude,
       'sin',
       this.gradient1,
-      (this.width / (2 * Math.PI)) * 0.8,
-      200
+      (this.width / (2 * Math.PI)) * this.parameters[0].frequency,
+      this.parameters[0].offset
     );
     this.drawCurves(
-      20,
-      'cos',
+      this.parameters[1].amplitude,
+      'sin',
       this.gradient2,
-      (this.width / (2 * Math.PI)) * 0.5,
-      50
+      (this.width / (2 * Math.PI)) * this.parameters[1].frequency,
+      this.parameters[1].offset
     );
     this.drawCurves(
-      20,
+      this.parameters[2].amplitude,
       'sin',
       this.gradient3,
-      (this.width / (2 * Math.PI)) * 1,
-      0
+      (this.width / (2 * Math.PI)) * this.parameters[2].frequency,
+      this.parameters[2].offset
     );
 
     this.step += 5;
@@ -182,12 +190,15 @@ class CanvasComponent extends React.Component {
 
   render() {
     return (
-      <canvas
-        ref={this.canvasRef}
-        width={300}
-        height={300}
-        className="audio-container__canvas"
-      />
+      <div className="audio-container__canvas-container">
+        <div className="audio-container__shadow"></div>
+        <canvas
+          ref={this.canvasRef}
+          width={300}
+          height={300}
+          className="audio-container__canvas"
+        />
+      </div>
     );
   }
 }

@@ -10,6 +10,7 @@ import CanvasComponent from './CanvasComponent';
 const AudioContainer = ({
   audioProp,
   activeSong,
+  parametersProp,
   songsLength,
   changeAudio,
   ...props
@@ -95,6 +96,13 @@ const AudioContainer = ({
     }
   };
 
+  useEffect(() => {
+    if (audioTime === audioLength) {
+      setAnimCanvas(false);
+      pauseHandler();
+    }
+  }, [audioTime]);
+
   const pauseHandler = () => {
     const audio = audioRef?.current;
     if (audio) {
@@ -135,7 +143,10 @@ const AudioContainer = ({
   return (
     <div className="audio-container">
       <audio id="audio" ref={audioRef}></audio>
-      <CanvasComponent animCanvas={animCanvas} />
+      <CanvasComponent
+        animCanvas={animCanvas}
+        parametersProp={parametersProp}
+      />
 
       {/* АУДИО ДОРОЖКА */}
       <div className="audio-container__audio-track">

@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../../public/LOGO.svg';
 import menu from '../../../public/menu.svg';
 
 const Header = (props) => {
   const [showMenu, setShowMenu] = useState(false);
-  const navigate = useNavigate(); 
+  const [flagAnim, setFlagAnim] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const anim = query.get('anim');
+
+    if (anim) {
+      setFlagAnim(true);
+    } else {
+      setFlagAnim(false);
+    }
+  }, [location]);
 
   return (
     <header className={`header ${showMenu ? 'header--black' : ''}`}>
       <img
         src={logo}
         alt="logo"
+        className="header__logo"
         onClick={() => {
-          return navigate('/');
+          window.location.href = `/`;
         }}
       />
       <nav className="header__nav ">
@@ -23,9 +36,11 @@ const Header = (props) => {
             setShowMenu(false);
           }}
           to="/"
-          className={({ isActive }) =>
-            isActive ? 'header__link header__link--active' : 'header__link'
-          }
+          className={({ isActive }) => {
+            return isActive && flagAnim
+              ? 'header__link header__link--active'
+              : 'header__link';
+          }}
         >
           about
         </NavLink>

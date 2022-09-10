@@ -4,132 +4,17 @@ import './PoemsPage.scss';
 import mainPhoto3 from '../../public/mainPhoto3.png';
 import mainPhoto3Tablet from '../../public/mainPhoto3-tablet.png';
 import mainPhoto3Mobile from '../../public/mainPhoto3-mobile.png';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const poemsArr = [
   {
     title: 'о вдохновении',
-    text: `Никто, ничто, никак, ничем<br/>
-    Не вдохновляли меня прежде.<br/>
-    Но Вы, право, особенны,<br/>
-    Красивы – без или в одежде.<br/>
-    <br/>
-    Ведь рядом с Вами в тот же миг<br/>
-    Я обретаю вдохновенье.<br/>
-    Не скрою я, что у меня<br/>
-    Есть к Вам огромное влеченье.<br/>
-    <br/>
-    Я к Вам, ей-богу, буду впредь<br/>
-    Всегда, всю жизнь с огромным сердцем.<br/>
-    Я рад бы был, если бы Вы<br/>
-    Пошли б со мной, с шикарным перцем.<br/>
-    <br/>
-    Для Вас готов на много я -<br/>
-    Вы просветите хоть рентгеном.<br/>
-    Я честный парень, без гнилья,<br/>
-    С большой душой, с не малым …<br/><br/>
-    17/01/2021`,
+    text: `Poem available soon`,
   },
   {
     title: 'СОН',
-    text: `Закат. Стемнело. Вечер поздний наступает.<br/>
-
-    Я, взглядом вдумчиво в ночную даль застыв,<br/>     
-    
-    И в одночасье обо всём забыв,<br/>
-    
-    В раздумье том в очередной раз засыпаю.<br/>
-    
-    
-    
-    <br/>
-    
-    Во сне придёт ко мне замученная фея —<br/>
-    
-    Волшебной палочкой заботливо взмахнув,<br/>
-    
-    Взглянув сочувственно, и, тяжело вздохнув <br/>
-    
-    Печаль и грусть мою тотчас она развеет.<br/>
-    
-  
-    <br/>
-    
-    Приснится снова мне то самое виденье,<br/>
-  
-    
-    Что видел я впервые будто век назад.<br/>
-    
-    С тех пор живёт во мне, чему я очень рад,<br/>
-    
-    Мечтою став навек в моём воображении.<br/>
-    
-    
-    <br/>
-    
-    
-    В том сне её я встретил — это было чудо…<br/>
-    
-    Её изяществом я тут же был согрет.<br/>
-    
-    Во мгле ночной неповторимый её свет<br/>
-    
-    Сразил меня сполна, сверкая изумрудом.<br/>
-    
-                                                                                                     
-    <br/>
-    
-    
-    Но ночь прошла… Она исчезла... Я — в забвении…<br/>
-    
-    Ушла и фея… Улетела прочь,<br/>
-    
-    Чтоб всё однажды повторить точь-в-точь,<br/>
-    
-    Как вновь увижу того света излучение…<br/>`,
-  },
-  {
-    title: 'название',
-    text: `Никто, ничто, никак, ничем<br/>
-    Не вдохновляли меня прежде.<br/>
-    Но Вы, право, особенны,<br/>
-    Красивы – без или в одежде.<br/>
-    <br/>
-    Ведь рядом с Вами в тот же миг<br/>
-    Я обретаю вдохновенье.<br/>
-    Не скрою я, что у меня<br/>
-    Есть к Вам огромное влеченье.<br/>
-    <br/>
-    Я к Вам, ей-богу, буду впредь<br/>
-    Всегда, всю жизнь с огромным сердцем.<br/>
-    Я рад бы был, если бы Вы<br/>
-    Пошли б со мной, с шикарным перцем.<br/>
-    <br/>
-    Для Вас готов на много я -<br/>
-    Вы просветите хоть рентгеном.<br/>
-    Я честный парень, без гнилья,<br/>
-    С большой душой, с не малым …`,
-  },
-  {
-    title: 'о вдохновении',
-    text: `Никто, ничто, никак, ничем<br/>
-    Не вдохновляли меня прежде.<br/>
-    Но Вы, право, особенны,<br/>
-    Красивы – без или в одежде.<br/>
-    <br/>
-    Ведь рядом с Вами в тот же миг<br/>
-    Я обретаю вдохновенье.<br/>
-    Не скрою я, что у меня<br/>
-    Есть к Вам огромное влеченье.<br/>
-    <br/>
-    Я к Вам, ей-богу, буду впредь<br/>
-    Всегда, всю жизнь с огромным сердцем.<br/>
-    Я рад бы был, если бы Вы<br/>
-    Пошли б со мной, с шикарным перцем.<br/>
-    <br/>
-    Для Вас готов на много я -<br/>
-    Вы просветите хоть рентгеном.<br/>
-    Я честный парень, без гнилья,<br/>
-    С большой душой, с не малым …`,
+    text: `Poem available soon`,
   },
 ];
 const PoemsPage = () => {
@@ -141,29 +26,52 @@ const PoemsPage = () => {
     }
     return 1;
   });
+  const navigate = useNavigate();
+  const location = useLocation();
   const [animPoem, setAnimPoem] = useState(false);
   const [animMenu, setAnimMenu] = useState(true);
+  const [showPage, setShowPage] = useState(false);
+
+  // console.log('========location', location);
 
   useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const id = query.get('id');
+
+    if (id && poemsArr[id] !== undefined) {
+      setAnimPoem(true);
+      setAnimMenu(false);
+      setActivePoem(+id + 1);
+      setShowPage(true);
+    } else {
+      setAnimPoem(false);
+      setAnimMenu(true);
+    }
+
+    setShowPage(true);
     document.getElementById('root').className = 'root root--100';
 
     return () => {
       document.getElementById('root').className = 'root';
     };
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     if (activePoem && poemsArr[activePoem - 1]) {
-      if (refPoem) {
+      if (refPoem.current) {
         refPoem.current.scrollTop = 0;
       }
-      if (refPoemBig) {
+      if (refPoemBig.current) {
         refPoemBig.current.scrollTop = 0;
       }
     }
   }, [activePoem, poemsArr]);
 
   // const [showPoem, setShowPoem] = useState(0);
+
+  if (!showPage) {
+    return null;
+  }
 
   return (
     <div className="poems-page">
@@ -210,12 +118,16 @@ const PoemsPage = () => {
                     onClick={() => {
                       setActivePoem(index + 1);
                       setAnimMenu(false);
-                      setAnimPoem(true);
+                      //setAnimPoem(true);
                       window.scroll({
                         left: 0,
                         top: 0,
                         behavior: 'smooth',
                       });
+                      setTimeout(() => {
+                        //window.location.href = `/poems?id=${index}`;
+                        navigate(`/poems?id=${index}`);
+                      }, 300);
                     }}
                     className={`poems-page__li ${
                       index === activePoem - 1 ? 'poems-page__li--active' : ''
@@ -256,9 +168,11 @@ const PoemsPage = () => {
                         onClick={() => {
                           setAnimPoem(false);
                           setTimeout(() => {
-                            setActivePoem((prev) => prev - 1);
-                            setAnimPoem(true);
-                          }, 500);
+                            // window.location.href = `/poems?id=${
+                            //   +activePoem - 2
+                            // }`;
+                            navigate(`/poems?id=${+activePoem - 2}`);
+                          }, 300);
                         }}
                       >
                         <svg
@@ -287,9 +201,10 @@ const PoemsPage = () => {
                           //setAnimMenu(true);
                           setAnimPoem(false);
                           setTimeout(() => {
-                            setActivePoem((prev) => prev + 1);
+                            // window.location.href = `/poems?id=${activePoem}`;
+                            navigate(`/poems?id=${activePoem}`);
                             setAnimPoem(true);
-                          }, 500);
+                          }, 300);
                         }}
                       >
                         Next

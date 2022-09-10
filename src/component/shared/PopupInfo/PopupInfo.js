@@ -13,20 +13,49 @@ const PopupInfo = (props) => {
     >
       <div className="popup-info">
         <div className="popup-info__field">
-          <p className="popup-info__name"> content, photography </p>
-          <p className="popup-info__value"> Sergey Shmidt</p>
+          <p className="popup-info__name">WEBSITE CONTENT, photography </p>
+          <a
+            className="popup-info__value"
+            href="https://sergeyshmidt.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Sergey Shmidt
+          </a>
         </div>
         <div className="popup-info__field">
           <p className="popup-info__name"> UI / UX Design </p>
-          <p className="popup-info__value"> Anastasiia Kondratenko</p>
+          <a
+            className="popup-info__value"
+            href="https://www.behance.net/stacy-kondratenko/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Anastasiia Kondratenko
+          </a>
         </div>
         <div className="popup-info__field">
           <p className="popup-info__name"> Web development </p>
-          <p className="popup-info__value"> Igor Kocharovskyy</p>
+          <a
+            className="popup-info__value"
+            href="https://vk.com/garbyz_diana"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Diana Garbuz
+          </a>
         </div>
         <div className="popup-info__field">
           <p className="popup-info__name"> Photo editing </p>
-          <p className="popup-info__value"> Ksenia Gashova</p>
+          <a
+            className="popup-info__value"
+            href="https://www.instagram.com/gashovalova/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {' '}
+            Ksenia Gashova
+          </a>
         </div>
 
         <div

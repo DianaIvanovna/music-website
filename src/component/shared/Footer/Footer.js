@@ -10,45 +10,47 @@ const Footer = (props) => {
   return (
     <footer className="footer">
       <div className="footer__icons">
-        <a
-          className="footer__icon"
-          href="https://www.youtube.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src={youtube} alt="youtube" />
-        </a>
+        <p className="footer__icon">
+          <a
+            href="https://www.youtube.com/channel/UCBbxmuOJ4jIqs-OBGQYJwiw"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={youtube} alt="youtube" />
+          </a>
+        </p>
         {/* <div className="footer__icon">
           <img src={vk} alt="vk" />
         </div> */}
-        <a
-          className="footer__icon"
-          href="https://www.youtube.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src={instagram} alt="instagram" />
-        </a>
-        <p
-          className="footer__icon"
-          href="https://www.youtube.com/"
-          target="_blank"
-          onClick={() => {
-            props.setOpenPopup((value) => !value);
-          }}
-        >
-          <img src={info} alt="info" />
+        <p className="footer__icon">
+          <a
+            href="https://www.instagram.com/sergeyshmidtmusic/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={instagram} alt="instagram" />
+          </a>
         </p>
-        <a
-          className="footer__icon footer__icon--end footer__icon--linktree"
-          href="https://www.youtube.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src={linktree} alt="linktree" />
-        </a>
+        <p className="footer__icon  footer__icon--linktree">
+          <a
+            href="https://linktr.ee/sergeyshmidt"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={linktree} alt="linktree" />
+          </a>
+        </p>
+        <p className="footer__icon footer__icon--end">
+          <img
+            src={info}
+            alt="info"
+            onClick={() => {
+              props.setOpenPopup((value) => !value);
+            }}
+          />
+        </p>
       </div>
-      <p className="footer__copyright">Copyright 2021. All Rights Reserved</p>
+      <p className="footer__copyright">Copyright 2022. All Rights Reserved</p>
     </footer>
   );
 };

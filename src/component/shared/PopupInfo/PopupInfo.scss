@@ -50,7 +50,7 @@
 
   &__value {
     @include fontText(normal, 300, 32px, 48px);
-
+    display: block;
     color: #aaafc6;
     text-align: center;
   }
