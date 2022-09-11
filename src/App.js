@@ -27,7 +27,7 @@ function App() {
           <Route path="/poems" element={<PoemsPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
 
-          <Route element={<AboutPage />} />
+          <Route path="*" element={<AboutPage />} />
         </Routes>
       </React.Fragment>
 
