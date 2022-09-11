@@ -1418,8 +1418,11 @@ $time0: 4s;
     // top: 100px;
     right: 5%;
 
-    text-shadow: 2px 8px 6px rgba(46, 49, 67, 0.2),
-      0px -5px 30px rgba(255, 255, 255, 0.05);
+    color: #1c1e29;
+    // text-shadow: 3.90274px 7.80547px 46.8328px rgba(24, 27, 37, 0.25),
+    //   0px 98.0915px 245.229px rgba(4, 5, 12, 0.6);
+    text-shadow: 2.01567px 4.03134px 24.188px rgba(24, 27, 37, 0.25),
+      0px 50.6619px 126.655px rgba(4, 5, 12, 0.6);
 
     @media screen and (max-width: 1920px) {
       font-size: calc(40px + 10vw);
@@ -1439,8 +1442,11 @@ $time0: 4s;
     color: #1a1c28;
     text-transform: uppercase;
 
-    text-shadow: 2px 8px 6px rgba(46, 49, 67, 0.2),
-      0px -5px 30px rgba(255, 255, 255, 0.05);
+    color: #1c1e29;
+    // text-shadow: 3.90274px 7.80547px 46.8328px rgba(24, 27, 37, 0.25),
+    //   0px 98.0915px 245.229px rgba(4, 5, 12, 0.6);
+    text-shadow: 2.01567px 4.03134px 24.188px rgba(24, 27, 37, 0.25),
+      0px 50.6619px 126.655px rgba(4, 5, 12, 0.6);
     // @include fontText(normal, 800, 450px, 100%);
     font-family: 'Poppins';
     font-weight: 900;
@@ -1479,7 +1485,7 @@ $time0: 4s;
     right: -100vw;
     //right: 0;
     align-self: flex-end;
-    width: 517px;
+    width: 539px;
     // position: relative;
     // top: 25%;
     // right: -100%;
@@ -1535,7 +1541,7 @@ $time0: 4s;
     }
     // margin-top: 22%;
     margin-bottom: 45px;
-    width: 517px;
+    width: 539px;
 
     @media screen and (max-width: 1040px) {
       width: 380px;

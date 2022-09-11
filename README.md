@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Музыкальный сайт-визитка Sergey Shmidt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Данный проект - музыкальный сайт Sergey Shmidt
 
-## Available Scripts
+Ссылка на дизайн - [фигма](https://www.figma.com/file/XtfMmNvL8K3pWlq2oKF7lU/Sergey-Shmidt-Official-Web-Site?node-id=697%3A1327)
+Ссылка на сайт - [https://sergeyshmidt.com/](https://sergeyshmidt.com/)
 
-In the project directory, you can run:
+## Технологический стек
 
-### `npm start`
+- HTML, предпроцессор SCSS
+- JavaScript, React
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Особенности проекта
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Разработка собственного аудиоплеера с помощью canvas.
+![картинка плеера](src/public/audioPlay.png)
 
-### `npm test`
+## Инструкция как добавить песню на сайт
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. добавить аудиофайл в папку [src/public](src/public)
+2. В файле [SongsPage.js](src/component/SongsPage/SongsPage.js) в массив songsArr добавить объект песни
 
-### `npm run build`
+```js
+    {
+        title: "название песни",
+        audio: audio1,
+        Lyrics: 'дополнительные поля информации',
+        recordingPerformance: `дополнительные поля информации`,
+        Recording: `дополнительные поля информации`,
+        releaseDateText: 'MAY, 2022',
+        releaseDate: '2022/05/13',
+        spotify: "ссылка на spotify",
+        appleMusic: "ссылка на appleMusic",
+        youtube: "ссылка на youtube",
+        disabled: false, // флаг заблокированная песня или нет
+        parameters: [ // данные параметры нужны для анимации плеера
+        {
+            // параметры для первой волны
+            amplitude: 55,  // начальная амплитуда
+            amplitudeMax: 75, // amplitude max - 100
+            amplitudeMin: 50,// amplitude min - -100
+            amplitudeIncrease: true,
+            frequency: 0.95, //   Частота  frequency max - 1 min - 0.4
+            offset: 150, // смещение по горизонтали
+        },
+        {
+            // аналогично для 2 волны
+        },
+        {
+            // аналогично для 3 волны
+        },
+        ],
+  },
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. собрать проект командой npm run build и выложить на хостинг
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Инструкция как добавить стихотворение на сайт
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. В файле [PoemsPage.js](src/component/PoemsPage/PoemsPage.js) в массив poemsArr добавить объект песни
 
-### `npm run eject`
+```js
+    {
+        title: 'Название песни',
+        text: `текст песни`,
+    },
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. собрать проект командой npm run build и выложить на хостинг
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Инструкция как развернуть проект
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Клонируйте или скачайте репозиторий: https://github.com/DianaIvanovna/music-website.git
+- Предварительно установите node.js
+- Установите необходимые пакеты командой: npm i
+- Запустите локальный сервер командой: npm run start

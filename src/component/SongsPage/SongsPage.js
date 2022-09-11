@@ -1,4 +1,3 @@
-// анализирует звук и создает плеер
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import './SongsPage.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
