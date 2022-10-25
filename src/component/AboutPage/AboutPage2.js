@@ -16,23 +16,6 @@ const AboutPage = () => {
   const [animItem, setAnimItem] = useState(-1);
   const navigate = useNavigate();
 
-  const resizeHandler = () => {
-    if (window.innerWidth <= 600) {
-      setMobile(true);
-      setStep(0);
-    } else {
-      setMobile(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeHandler);
-
-    return () => {
-      window.removeEventListener('resize', resizeHandler);
-    };
-  }, []);
-
   useEffect(() => {
     if (step === 0) {
       navigate('/');
@@ -53,7 +36,7 @@ const AboutPage = () => {
   const timeAnim2 = 1000;
 
   const scrollHandler = (event) => {
-    if (!blockScroll && !mobile) {
+    if (!blockScroll) {
       if (event.deltaY < 0 && step !== 0) {
         setStep((value) => {
           setPrevStep(value);
@@ -78,7 +61,7 @@ const AboutPage = () => {
   };
 
   const scrollMobileEndHandler = (event) => {
-    if (touchPos && !blockScroll && !mobile) {
+    if (touchPos && !blockScroll) {
       let newTouchPos = event.changedTouches[0].clientY;
       if (newTouchPos > touchPos && step !== 0) {
         setStep((value) => {
@@ -106,9 +89,7 @@ const AboutPage = () => {
   };
 
   const scrollMobileStartHandler = (event) => {
-    if (!mobile) {
-      setTouchPos(event.changedTouches[0].clientY);
-    }
+    setTouchPos(event.changedTouches[0].clientY);
   };
 
   const block1 = (
@@ -120,7 +101,7 @@ const AboutPage = () => {
           }`}
         >
           <div className={`about-page__block-1`}>
-            <p className="about-page__text about-page__text--musician">
+            <p className="about-page__text">
               musician.poet.
               <br />
               composer.

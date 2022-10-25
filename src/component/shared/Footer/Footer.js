@@ -19,16 +19,22 @@ const Footer = (props) => {
             <img src={youtube} alt="youtube" />
           </a>
         </p>
-        {/* <div className="footer__icon">
-          <img src={vk} alt="vk" />
-        </div> */}
-        <p className="footer__icon">
+        {/* <p className="footer__icon">
           <a
             href="https://www.instagram.com/sergeyshmidtmusic/"
             target="_blank"
             rel="noreferrer"
           >
             <img src={instagram} alt="instagram" />
+          </a>
+        </p> */}
+        <p className="footer__icon">
+          <a
+            href="https://vk.com/sergeyshmidtmusic"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={vk} alt="vk" />
           </a>
         </p>
         <p className="footer__icon  footer__icon--linktree">

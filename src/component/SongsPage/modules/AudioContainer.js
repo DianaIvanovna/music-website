@@ -13,6 +13,8 @@ const AudioContainer = ({
   parametersProp,
   songsLength,
   changeAudio,
+  defaultTime,
+  songsArr,
   ...props
 }) => {
   // audioProp={songsArr[activeSong].audio}
@@ -27,7 +29,7 @@ const AudioContainer = ({
   const [playButton, setPlayButton] = useState(true);
   const [audioTime, setAudioTime] = useState(0);
   const [audioWidthTrack, setAudioWidthTrack] = useState('0%');
-  const [audioLength, setAudioLength] = useState(0);
+  const [audioLength, setAudioLength] = useState(defaultTime);
   const [audioInterval, setAaudioInterval] = useState(null);
   const [activeVolume, setActiveVolume] = useState(false);
   const [animCanvas, setAnimCanvas] = useState(false);
@@ -57,7 +59,8 @@ const AudioContainer = ({
       audioRef.current.currentTime = 0;
       setAudioTime(0);
       setAudioWidthTrack('0%');
-      setAudioLength(0);
+      console.log('defaultTime', defaultTime, activeSong, songsArr);
+      setAudioLength(defaultTime);
     }
   }, [audioProp]);
 

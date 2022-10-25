@@ -49,11 +49,10 @@ const PopupInfo = (props) => {
           <p className="popup-info__name"> Photo editing </p>
           <a
             className="popup-info__value"
-            href="https://www.instagram.com/gashovalova/"
+            href="https://vk.com/gashovalova"
             target="_blank"
             rel="noreferrer"
           >
-            {' '}
             Ksenia Gashova
           </a>
         </div>

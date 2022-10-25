@@ -10,11 +10,53 @@ import { useNavigate } from 'react-router-dom';
 const poemsArr = [
   {
     title: 'о вдохновении',
-    text: `Poem available soon`,
+    text: `Никто, ничто, никак, ничем
+    <br/>
+    Не вдохновляли меня прежде.
+    <br/>
+    Но Вы, право, особенны –
+    <br/>
+    Красивы без или в одежде.
+    <br/>
+    <br/>
+    
+    Ведь рядом с Вами в тот же миг
+    <br/>
+    Я обретаю вдохновенье.
+    <br/>
+    Не скрою я, что у меня
+    <br/>
+    Есть к Вам огромное влеченье.
+    <br/>
+    <br/>
+    
+    Я к Вам, ей-богу, буду впредь
+    <br/>
+    Всегда, всю жизнь с огромным сердцем.
+    <br/>
+    Я рад бы был, если бы Вы
+    <br/>
+    Пошли б со мной, с шикарным перцем.
+    <br/>
+    <br/>
+    
+    Для Вас готов на много я -
+    <br/>
+    Вы просветите хоть рентгеном.
+    <br/>
+    Я честный парень, без гнилья,
+    <br/>
+    С большой душой, с не малым …
+    <br/>
+    <br/>
+    <span >2021/01/17</span>
+    `,
+    url: 'o_vdokhnovenii',
   },
   {
     title: 'СОН',
     text: `Poem available soon`,
+    url: 'SON',
   },
 ];
 const PoemsPage = () => {
@@ -126,7 +168,9 @@ const PoemsPage = () => {
                       });
                       setTimeout(() => {
                         //window.location.href = `/poems?id=${index}`;
-                        navigate(`/poems?id=${index}`);
+                        navigate(
+                          `/poems?poem=${poemsArr[index].url}&id=${index}`
+                        );
                       }, 300);
                     }}
                     className={`poems-page__li ${
@@ -171,7 +215,11 @@ const PoemsPage = () => {
                             // window.location.href = `/poems?id=${
                             //   +activePoem - 2
                             // }`;
-                            navigate(`/poems?id=${+activePoem - 2}`);
+                            navigate(
+                              `/poems?poem=${poemsArr[activePoem - 2].url}&id=${
+                                +activePoem - 2
+                              }`
+                            );
                           }, 300);
                         }}
                       >
@@ -202,7 +250,9 @@ const PoemsPage = () => {
                           setAnimPoem(false);
                           setTimeout(() => {
                             // window.location.href = `/poems?id=${activePoem}`;
-                            navigate(`/poems?id=${activePoem}`);
+                            navigate(
+                              `/poems?poem=${poemsArr[activePoem].url}&id=${activePoem}`
+                            );
                             setAnimPoem(true);
                           }, 300);
                         }}

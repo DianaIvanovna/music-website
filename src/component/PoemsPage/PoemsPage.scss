@@ -227,6 +227,22 @@
     // left: 0;
     // top: 0;
     //width: 45%;
+
+    span {
+      font-family: 'Commissioner';
+      font-style: normal;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 36px;
+      /* identical to box height, or 150% */
+
+      display: flex;
+      align-items: center;
+
+      /* Main/03 */
+
+      color: #aaafc6;
+    }
     @media screen and (max-width: 1440px) {
       padding-top: calc(20vh + 32px);
       @include fontText(normal, 300, 26px, 126%);
@@ -240,6 +256,14 @@
     @media screen and (max-width: 600px) {
       @include fontText(normal, 300, 20px, 30px);
       text-align: center;
+
+      span {
+        font-size: 18px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 

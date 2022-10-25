@@ -752,7 +752,7 @@ $time0: 4s;
     background: linear-gradient(
       180deg,
       rgba(25, 27, 37, 0.0727273) 0%,
-      rgba(25, 27, 37, 0) 74.06%,
+      rgba(25, 27, 37, 0) 64.06%,
       #191b25 100%
     );
     transform: rotate(180deg);
@@ -811,15 +811,12 @@ $time0: 4s;
       }
     }
     @media screen and (max-width: 600px) {
-      // position: absolute;
-      position: fixed;
-      // align-items: flex-end;
-      bottom: 150px;
+      position: absolute;
+      bottom: 0;
       top: auto;
 
       .about-page__text {
         @include fontText(normal, 300, 36px, 48px);
-        margin-bottom: 0;
       }
     }
   }
@@ -1302,10 +1299,6 @@ $time0: 4s;
     display: none;
     margin-top: 15%;
     //margin-top: 180px;
-
-    &--musician {
-      z-index: 1;
-    }
 
     @media screen and (max-width: 1920px) {
       margin-top: 10%;
