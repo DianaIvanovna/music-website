@@ -79,6 +79,9 @@ const PopupInfo = (props) => {
           </svg>
           <span>Back </span>
         </div>
+        <div className="popup-info__field--attention">
+          <p className="popup-info__name ">This website is a private website</p>
+        </div>
 
         <div className="popup-info__elipse-1"></div>
         <div className="popup-info__elipse-2"></div>
