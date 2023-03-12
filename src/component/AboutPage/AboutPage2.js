@@ -1,26 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import './AboutPage.scss';
+import './AboutPage2.scss';
 import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import mainPhoto from '../../public/mainPhoto.png';
 import mainPhotoTablet from '../../public/mainPhoto-tablet.png';
 import mainPhotoMobile from '../../public/mainPhoto-mobile.png';
-
 import mainPhoto2 from '../../public/mainPhoto2.png';
 import mainPhoto2Tablet from '../../public/mainPhoto2-tablet.png';
 import mainPhoto2Mobile from '../../public/mainPhoto2-mobile.png';
-
 const AboutPage = () => {
   const [blockScroll, setBlockScroll] = useState(false);
   const [step, setStep] = useState(0);
   const [animItem, setAnimItem] = useState(-1);
   const navigate = useNavigate();
 
+  const resizeHandler = () => {
+    document.querySelector('.app').style.height = '100vh';
+    document.body.style.height = '100vh';
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeHandler);
+    const app = document.querySelector('.app');
+    document.body.style.height = '100vh';
+    app.style.height = '100vh';
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.height = 'auto';
+      document.body.style.overscrollBehavior = 'auto';
+      document.body.style.overflow = 'auto';
+      app.style = {};
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
   useEffect(() => {
     if (step === 0) {
       navigate('/');
+
+      document.body.style.overscrollBehavior = 'auto';
     } else {
       navigate('/?anim=1');
+      document.body.style.overscrollBehavior = 'none';
     }
   }, [step]);
 
@@ -83,7 +105,6 @@ const AboutPage = () => {
           setBlockScroll(false);
         }, 2500);
       }
-
       setTouchPos(null);
     }
   };
@@ -117,7 +138,6 @@ const AboutPage = () => {
       )}
     </Transition>
   );
-
   const textContainer = (
     <>
       <p
@@ -126,28 +146,26 @@ const AboutPage = () => {
         <span>I've been playing guitar for </span>
         <span>over</span> twenty years.
       </p>
-
       <p
         className={`about-page__text-block  about-page__block-7 about-page__block-7--${prevStep}-${step}`}
       >
         <span>
-          After graduating from music school, I've dedicated few years to
+          After graduating from music school, <br />I had dedicated several
+          years to
         </span>{' '}
-        play songs <span>from famous bands and musicians.</span>
+        playing songs <span>of famous bands and musicians.</span>
       </p>
-
       <p
         className={`about-page__text-block  about-page__block-8 about-page__block-8--${prevStep}-${step}`}
       >
-        <span>In the following years my focus was </span> to master{' '}
-        <span>drums, electric and bass guitar.</span>
+        <span>In the following years I focused </span>on mastering{' '}
+        <span>drums, electric guitar and bass.</span>
       </p>
-
       <div
         className={` about-page__block-9 about-page__block-9--${prevStep}-${step}`}
       >
         <p className="about-page__text-block  ">
-          <span>Since 2020 I've been working on</span> writing my own{' '}
+          <span>Since 2020, I've been working on</span> writing my own{' '}
           <span>songs and poems. I think you’ll enjoy it!</span>
         </p>
         <button
@@ -161,7 +179,6 @@ const AboutPage = () => {
       </div>
     </>
   );
-
   const avatar1 = (
     <Transition in={step === 0} timeout={timeAnim}>
       {(state) => (
@@ -172,13 +189,11 @@ const AboutPage = () => {
         >
           <source srcSet={mainPhoto} media="(min-width: 1041px)" />
           <source srcSet={mainPhotoTablet} media="(min-width: 600px)" />
-
           <img srcSet={mainPhotoMobile} alt="avatar" />
         </picture>
       )}
     </Transition>
   );
-
   const avatar2 = (
     <Transition
       in={step === 4}
@@ -197,13 +212,11 @@ const AboutPage = () => {
         >
           <source srcSet={mainPhoto2} media="(min-width: 1024px)" />
           <source srcSet={mainPhoto2Tablet} media="(min-width: 600px)" />
-
           <img srcSet={mainPhoto2Mobile} alt="avatar" />
         </picture>
       )}
     </Transition>
   );
-
   const block4 = (
     <Transition
       in={step === 1}
@@ -248,7 +261,6 @@ const AboutPage = () => {
       )}
     </Transition>
   );
-
   const block19 = (
     <Transition
       in={step === 3}
@@ -267,7 +279,6 @@ const AboutPage = () => {
       )}
     </Transition>
   );
-
   return (
     <div
       className={`about-page about-page__anim--step-${step + 1}`}
@@ -282,12 +293,10 @@ const AboutPage = () => {
       }}
     >
       {block1}
-
       {textContainer}
       {block4}
       {block5}
       {block19}
-
       <Transition
         in={step >= 1 && step <= 9}
         timeout={{
@@ -318,7 +327,6 @@ const AboutPage = () => {
           </div>
         )}
       </Transition>
-
       <Transition in={step === 0} timeout={timeAnim} unmountOnExit>
         {(state) => (
           <div
@@ -331,13 +339,11 @@ const AboutPage = () => {
                 {block1}
                 <p className="about-page__block-2-first-name">Sergey</p>
               </div>
-
               <p className="about-page__block-2-full-name">Shmidt</p>
             </div>
           </div>
         )}
       </Transition>
-
       <div className="about-page__tablet-scroll-container">
         <div className="about-page__scroll">
           <div
@@ -353,11 +359,8 @@ const AboutPage = () => {
         </div>
         <p className="about-page__scroll-text">scroll</p>
       </div>
-
       {avatar1}
-
       {avatar2}
-
       {/* <div className={`about-page__circle-1 `}></div> */}
       <Transition in={step === 0} timeout={timeAnim}>
         {(state) => (
@@ -372,5 +375,4 @@ const AboutPage = () => {
     </div>
   );
 };
-
 export default AboutPage;

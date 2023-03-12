@@ -150,23 +150,23 @@ const AboutPage = () => {
         className={`about-page__text-block  about-page__block-7 about-page__block-7--${prevStep}-${step}`}
       >
         <span>
-          After graduating from music school, I've dedicated few years to
+          After graduating from music school, I had dedicated several years to
         </span>{' '}
-        play songs <span>from famous bands and musicians.</span>
+        playing songs <span>of famous bands and musicians.</span>
       </p>
 
       <p
         className={`about-page__text-block  about-page__block-8 about-page__block-8--${prevStep}-${step}`}
       >
-        <span>In the following years my focus was </span> to master{' '}
-        <span>drums, electric and bass guitar.</span>
+        <span>In the following years I focused </span> on mastering drums{' '},
+        <span>electric guitar and bass.</span>
       </p>
 
       <div
         className={` about-page__block-9 about-page__block-9--${prevStep}-${step}`}
       >
         <p className="about-page__text-block  ">
-          <span>Since 2020 I've been working on</span> writing my own{' '}
+          <span>Since 2020, I've been working on</span> writing my own{' '}
           <span>songs and poems. I think you’ll enjoy it!</span>
         </p>
         <button

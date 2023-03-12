@@ -6,59 +6,8 @@ import mainPhoto3Tablet from '../../public/mainPhoto3-tablet.png';
 import mainPhoto3Mobile from '../../public/mainPhoto3-mobile.png';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { poemsArr } from './data';
 
-const poemsArr = [
-  {
-    title: 'о вдохновении',
-    text: `Никто, ничто, никак, ничем
-    <br/>
-    Не вдохновляли меня прежде.
-    <br/>
-    Но Вы, право, особенны –
-    <br/>
-    Красивы без или в одежде.
-    <br/>
-    <br/>
-    
-    Ведь рядом с Вами в тот же миг
-    <br/>
-    Я обретаю вдохновенье.
-    <br/>
-    Не скрою я, что у меня
-    <br/>
-    Есть к Вам огромное влеченье.
-    <br/>
-    <br/>
-    
-    Я к Вам, ей-богу, буду впредь
-    <br/>
-    Всегда, всю жизнь с огромным сердцем.
-    <br/>
-    Я рад бы был, если бы Вы
-    <br/>
-    Пошли б со мной, с шикарным перцем.
-    <br/>
-    <br/>
-    
-    Для Вас готов на много я -
-    <br/>
-    Вы просветите хоть рентгеном.
-    <br/>
-    Я честный парень, без гнилья,
-    <br/>
-    С большой душой, с не малым …
-    <br/>
-    <br/>
-    <span >2021/01/17</span>
-    `,
-    url: 'o_vdokhnovenii',
-  },
-  {
-    title: 'СОН',
-    text: `Poem available soon`,
-    url: 'SON',
-  },
-];
 const PoemsPage = () => {
   const refPoemBig = createRef(null);
   const refPoem = createRef(null);

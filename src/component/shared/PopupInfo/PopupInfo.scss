@@ -16,7 +16,25 @@
   padding: 100px 20px 100px;
 
   @media screen and (min-width: 768px) and (max-height: 800px) {
-    padding: 40px 20px 0;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: 768px) and (max-height: 650px) {
+    padding: 20px 20px 0;
+  }
+
+  &__link {
+    @include fontText(normal, 400, 18px, 22px);
+
+    color: #52597a;
+    text-align: center;
+    margin: 10px auto 0;
+
+    text-decoration: underline;
+    display: none;
+    @media screen and (max-width: 1040px) {
+      display: block;
+    }
   }
 
   &__back {
@@ -26,7 +44,7 @@
     right: 0;
     bottom: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,8 +117,11 @@
 
   @media screen and (max-width: 768px) {
     // background: #191B25;
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    box-sizing: border-box;
     justify-content: flex-start;
 
     padding-top: 200px;
@@ -142,5 +163,11 @@
     &__value {
       @include fontText(normal, 300, 24px, 36px);
     }
+
+    // &__field {
+    //   &--attention {
+    //     margin-top: 20px;
+    //   }
+    // }
   }
 }

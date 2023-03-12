@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Header.scss';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../../public/LOGO.svg';
+import logo from '../../../public/LOGO.png';
 import menu from '../../../public/menu.svg';
 
 const Header = (props) => {

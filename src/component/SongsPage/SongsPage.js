@@ -76,8 +76,6 @@ const SongsPage = () => {
         ))}
       </ul>
 
-      {console.log('activeSong', songsArr[activeSong].defaultTime)}
-
       <div className="songs-page__container">
         <AudioContainer
           audioProp={songsArr[activeSong].audio}
@@ -94,14 +92,14 @@ const SongsPage = () => {
           <div className="songs-page__audio-info-container">
             <div className="songs-page__audio-field">
               <p className="songs-page__audio-title">
-                Lyrics, music, arrangement:
+                Lyrics, Music, Arrangement:
               </p>
               <p className="songs-page__audio-value">
                 {songsArr[activeSong].Lyrics}
               </p>
             </div>
             <div className="songs-page__audio-field">
-              <p className="songs-page__audio-title">Recording performance:</p>
+              <p className="songs-page__audio-title">Recording Performance:</p>
               <p
                 className="songs-page__audio-value"
                 dangerouslySetInnerHTML={{
@@ -111,7 +109,7 @@ const SongsPage = () => {
             </div>
             <div className="songs-page__audio-field">
               <p className="songs-page__audio-title">
-                Recording, mixing, mastering:
+                Recording, Mixing, Mastering:
               </p>
               <p
                 className="songs-page__audio-value"
@@ -121,7 +119,7 @@ const SongsPage = () => {
               ></p>
             </div>
             <div className="songs-page__audio-field">
-              <p className="songs-page__audio-title">Release date:</p>
+              <p className="songs-page__audio-title">Release Date:</p>
               <p className="songs-page__audio-value">
                 {songsArr[activeSong].releaseDate}
               </p>
@@ -129,30 +127,40 @@ const SongsPage = () => {
           </div>
 
           <div className="songs-page__icon-container">
-            <a
-              href={songsArr[activeSong].spotify}
-              alt="Spotify"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={audoiIcon} alt="Spotify" />
-            </a>
-            <a
-              href={songsArr[activeSong].appleMusic}
-              alt="Spotify"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={audoiIcon2} alt="appleMusic" />
-            </a>
-            <a
-              href={songsArr[activeSong].youtube}
-              alt="youtube"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={audoiIcon3} alt="youtube" />
-            </a>
+            {songsArr[activeSong].spotify ? (
+              <a
+                href={songsArr[activeSong].spotify}
+                className="songs-page__icon"
+                alt="Spotify"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={audoiIcon} alt="Spotify" />
+              </a>
+            ) : null}
+
+            {songsArr[activeSong].appleMusic ? (
+              <a
+                href={songsArr[activeSong].appleMusic}
+                className="songs-page__icon"
+                alt="appleMusic"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={audoiIcon2} alt="appleMusic" />
+              </a>
+            ) : null}
+            {songsArr[activeSong].youtube ? (
+              <a
+                href={songsArr[activeSong].youtube}
+                className="songs-page__icon"
+                alt="youtube"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={audoiIcon3} alt="youtube" />
+              </a>
+            ) : null}
           </div>
         </div>
       </div>
@@ -239,7 +247,7 @@ const SongsPage = () => {
                 <div className="songs-page__audio-info-container">
                   <div className="songs-page__audio-field">
                     <p className="songs-page__audio-title">
-                      Lyrics, music, arrangement:
+                      Lyrics, Music, Arrangement:
                     </p>
                     <p className="songs-page__audio-value">
                       {songsArr[activeSong].Lyrics}
@@ -247,7 +255,7 @@ const SongsPage = () => {
                   </div>
                   <div className="songs-page__audio-field">
                     <p className="songs-page__audio-title">
-                      Recording performance:
+                      Recording Performance:
                     </p>
                     <p
                       className="songs-page__audio-value"
@@ -258,7 +266,7 @@ const SongsPage = () => {
                   </div>
                   <div className="songs-page__audio-field">
                     <p className="songs-page__audio-title">
-                      Recording, mixing, mastering:
+                      Recording, Mixing, Mastering:
                     </p>
                     <p
                       className="songs-page__audio-value"
@@ -276,30 +284,38 @@ const SongsPage = () => {
                 </div>
 
                 <div className="songs-page__icon-container">
-                  <a
-                    href={songsArr[activeSong].spotify}
-                    alt="Spotify"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={audoiIcon} alt="Spotify" />
-                  </a>
-                  <a
-                    href={songsArr[activeSong].appleMusic}
-                    alt="Spotify"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={audoiIcon2} alt="appleMusic" />
-                  </a>
-                  <a
-                    href={songsArr[activeSong].youtube}
-                    alt="youtube"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img src={audoiIcon3} alt="youtube" />
-                  </a>
+                  {songsArr[activeSong].spotify ? (
+                    <a
+                      href={songsArr[activeSong].spotify}
+                      alt="Spotify"
+                      className="songs-page__icon"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img src={audoiIcon} alt="Spotify" />
+                    </a>
+                  ) : null}
+                  {songsArr[activeSong].appleMusic ? (
+                    <a
+                      href={songsArr[activeSong].appleMusic}
+                      alt="appleMusic"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img src={audoiIcon2} alt="appleMusic" />
+                    </a>
+                  ) : null}
+
+                  {songsArr[activeSong].youtube ? (
+                    <a
+                      href={songsArr[activeSong].youtube}
+                      alt="youtube"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img src={audoiIcon3} alt="youtube" />
+                    </a>
+                  ) : null}
                 </div>
               </div>
             ) : null}

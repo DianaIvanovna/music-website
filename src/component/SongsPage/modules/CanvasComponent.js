@@ -159,8 +159,6 @@ class CanvasComponent extends React.Component {
           item.amplitudeIncrease = true;
         }
       });
-
-      console.log('this.parameters1.amplitude', this.parameters[1].amplitude);
     }
 
     this.drawCurves(

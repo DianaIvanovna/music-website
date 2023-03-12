@@ -2,9 +2,10 @@
 import './App.scss';
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AboutPage from './component/AboutPage/AboutPage';
+import AboutPage from './component/AboutPage/AboutPage2';
 import SongsPage from './component/SongsPage/SongsPage';
 import PoemsPage from './component/PoemsPage/PoemsPage';
+import PrivacyPolicy from './component/PrivacyPolicy/PrivacyPolicy';
 import ContactsPage from './component/ContactsPage/ContactsPage';
 import StubPage from './component/StubPage/StubPage';
 import Header from './component/shared/Header/Header';
@@ -26,6 +27,7 @@ function App() {
           <Route path="/songs" element={<SongsPage />} />
           <Route path="/poems" element={<PoemsPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
           <Route path="*" element={<AboutPage />} />
         </Routes>

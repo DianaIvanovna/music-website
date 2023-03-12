@@ -1,10 +1,11 @@
 import React from 'react';
 import './Footer.scss';
 import info from '../../../public/info.svg';
-import instagram from '../../../public/instagram.svg';
-import vk from '../../../public/vk.svg';
+// import instagram from '../../../public/instagram.svg';
+import spotify from '../../../public/spotify.svg';
 import youtube from '../../../public/youtube.svg';
 import linktree from '../../../public/linktree.svg';
+import { NavLink } from 'react-router-dom';
 
 const Footer = (props) => {
   return (
@@ -30,11 +31,15 @@ const Footer = (props) => {
         </p> */}
         <p className="footer__icon">
           <a
-            href="https://vk.com/sergeyshmidtmusic"
+            href="https://open.spotify.com/artist/6S1LEtvKQtd8uEvtPG2gDM"
             target="_blank"
             rel="noreferrer"
           >
-            <img src={vk} alt="vk" />
+            <img
+              src={spotify}
+              alt="spotify"
+              style={{ width: '29px', heigth: '29px' }}
+            />
           </a>
         </p>
         <p className="footer__icon  footer__icon--linktree">
@@ -56,7 +61,12 @@ const Footer = (props) => {
           />
         </p>
       </div>
-      <p className="footer__copyright">Copyright 2022. All Rights Reserved</p>
+      <NavLink to="/privacy-policy" className="footer__copyright footer__link">
+        Privacy Policy
+      </NavLink>
+      <p className="footer__copyright">
+        Copyright {new Date().getUTCFullYear()}. All Rights Reserved
+      </p>
     </footer>
   );
 };

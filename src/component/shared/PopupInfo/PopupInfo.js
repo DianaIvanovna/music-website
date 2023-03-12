@@ -1,5 +1,6 @@
 import React from 'react';
 import './PopupInfo.scss';
+import { NavLink } from 'react-router-dom';
 
 const PopupInfo = (props) => {
   return (
@@ -81,6 +82,15 @@ const PopupInfo = (props) => {
         </div>
         <div className="popup-info__field--attention">
           <p className="popup-info__name ">This website is a private website</p>
+          <NavLink
+            to="/privacy-policy"
+            className="popup-info__link"
+            onClick={() => {
+              props.setOpenPopup(false);
+            }}
+          >
+            Privacy Policy
+          </NavLink>
         </div>
 
         <div className="popup-info__elipse-1"></div>

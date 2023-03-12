@@ -1,0 +1,86 @@
+@import '../../variables.scss';
+
+.privacy_policy {
+  color: #52597a;
+  position: relative;
+  margin: 50px 0;
+
+  &__shadow-up {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 150px;
+    // border: 1px solid red;
+    background: linear-gradient(
+      180deg,
+      #191b25 40%,
+      rgba(25, 27, 37, 0.0727273) 100.92%
+    );
+    z-index: 2;
+
+    @media screen and (max-width: 600px) {
+      height: 100px;
+      // border: 1px solid red;
+      background: linear-gradient(
+        180deg,
+        #191b25 40%,
+        rgba(25, 27, 37, 0.0727273) 100.92%
+      );
+    }
+  }
+
+  &__shadow-down {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    // border: 1px solid red;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(
+      180deg,
+      rgba(25, 27, 37, 0) 1%,
+      #191b25 50.69%,
+      #191b25 100%
+    );
+    z-index: 2;
+    @media screen and (max-width: 600px) {
+      height: 150px;
+      background: linear-gradient(
+        180deg,
+        rgba(25, 27, 37, 0) 1%,
+        #191b25 30.69%,
+        #191b25 100%
+      );
+    }
+  }
+  &__title {
+    @include fontTitle(normal, 600, 42px, 150%);
+    margin: 30px 0 30px;
+  }
+
+  &__subtitle {
+    @include fontText(normal, 600, 32px, 150%);
+    margin: 20px 0;
+  }
+
+  &__subtitle_h3 {
+    @include fontText(normal, 600, 28px, 150%);
+    margin: 20px 0;
+  }
+
+  &__subtitle_h4 {
+    @include fontText(normal, 600, 24px, 150%);
+    margin: 20px 0;
+  }
+
+  &__text {
+    @include fontText(normal, 300, 24px, 150%);
+    margin: 0;
+    text-align: justify;
+  }
+
+  &__link {
+    text-decoration: underline;
+  }
+}
