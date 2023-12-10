@@ -107,7 +107,7 @@ export const songsArr = [
   },
 
   {
-    title: 'В Am Я ТЕБЕ, БРАТ',
+    title: 'ТЕМНОТА',
     url: 'V_Am_YA_TEBE_BRAT',
     audio: audio1,
     defaultTime: '0:00',

@@ -13,7 +13,7 @@ const Footer = (props) => {
       <div className="footer__icons">
         <p className="footer__icon">
           <a
-            href="https://www.youtube.com/channel/UCBbxmuOJ4jIqs-OBGQYJwiw"
+            href="https://www.youtube.com/@sergeyshmidtmusic"
             target="_blank"
             rel="noreferrer"
           >

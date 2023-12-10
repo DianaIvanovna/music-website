@@ -125,7 +125,7 @@ const AboutPage = () => {
             <p className="about-page__text">
               musician.poet.
               <br />
-              composer.
+              songwriter.
             </p>
             <div className="about-page__scroll-container">
               <p className="about-page__scroll-text">scroll</p>

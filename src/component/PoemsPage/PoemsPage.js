@@ -23,6 +23,22 @@ const PoemsPage = () => {
   const [animMenu, setAnimMenu] = useState(true);
   const [showPage, setShowPage] = useState(false);
 
+  useEffect(() => {
+    const func = (e) => {
+      if (e.target.classList.contains('poems-page__li')) {
+        const index = e.target.getAttribute('data-index');
+        if (index) {
+          setActivePoem(index);
+        }
+      }
+    };
+    document.addEventListener('click', func);
+
+    return () => {
+      document.removeEventListener('click', func);
+    };
+  }, []);
+
   // console.log('========location', location);
 
   useEffect(() => {
@@ -72,12 +88,13 @@ const PoemsPage = () => {
           {poemsArr.map((item, index) => (
             <li
               key={index}
-              onClick={() => {
-                setActivePoem(index + 1);
-              }}
+              // onClick={() => {
+              //   setActivePoem(index + 1);
+              // }}
               className={`poems-page__li ${
                 index === activePoem - 1 ? 'poems-page__li--active' : ''
               }`}
+              data-index={index + 1}
             >
               {item.title}
             </li>

@@ -123,7 +123,7 @@ const AboutPage = () => {
             <p className="about-page__text about-page__text--musician">
               musician.poet.
               <br />
-              composer.
+              songwriter.
             </p>
             <div className="about-page__scroll-container">
               <p className="about-page__scroll-text">scroll</p>
@@ -158,7 +158,7 @@ const AboutPage = () => {
       <p
         className={`about-page__text-block  about-page__block-8 about-page__block-8--${prevStep}-${step}`}
       >
-        <span>In the following years I focused </span> on mastering drums{' '},
+        <span>In the following years I focused </span> on mastering drums ,
         <span>electric guitar and bass.</span>
       </p>
 

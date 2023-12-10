@@ -52,9 +52,20 @@
   }
 }
 
+@mixin paddingTop() {
+  padding: 120px 0;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; /*chrome*/
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding: 0 0;
+  }
+}
+
 .poems-page {
   // padding: 40px 0 127px;
-  //border: 1px solid red;
   flex-grow: 1;
   color: white;
   box-sizing: border-box;
@@ -108,15 +119,13 @@
   &__list {
     display: flex;
     flex-direction: column;
-    // overflow-y: scroll;
-    //margin-top: 20vh;
-    height: 408px;
+    max-width: 510px;
     @include scroll();
-    direction: rtl;
     flex-shrink: 0;
-    margin-top: 20vh;
     margin-right: 200px;
+    height: 100%;
 
+    @include paddingTop();
     &--mobile {
       display: none;
     }
@@ -125,10 +134,11 @@
     }
     @media screen and (max-width: 1440px) {
       margin-right: 50px;
-      height: 300px;
+      max-width: 360px;
     }
     @media screen and (max-width: 1024px) {
       display: none;
+      max-width: 100%;
       &--mobile {
         display: flex;
         height: auto;
@@ -141,14 +151,12 @@
     @include fontText(normal, 300, 48px, 59px);
     text-transform: uppercase;
     color: #7c83a1;
-    height: 136px;
     flex-shrink: 0;
     text-align: left;
     margin-left: 70px;
-    padding-top: 36.5px;
+    padding: 36.5px 0;
     cursor: pointer;
     position: relative;
-    //border: 1px solid red;
     &--active {
       color: #da4f4f;
 
@@ -165,8 +173,7 @@
       }
     }
     @media screen and (max-width: 1440px) {
-      height: 100px;
-      padding-top: 32px;
+      padding: 32px 0;
       margin-left: 30px;
       @include fontText(normal, 300, 36px, 36px);
       &--active {
@@ -213,20 +220,9 @@
     @include fontText(normal, 300, 32px, 48px);
 
     color: #aaafc6;
-
-    padding: 20vh 0 300px;
-    padding-top: calc(20vh + 36.5px);
     text-align: left;
     height: 100%;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-      display: none; /*chrome*/
-    }
-    // @include scroll2();
-    // position: relative;
-    // left: 0;
-    // top: 0;
-    //width: 45%;
+    @include paddingTop();
 
     span {
       font-family: 'Commissioner';
@@ -244,7 +240,6 @@
       color: #aaafc6;
     }
     @media screen and (max-width: 1440px) {
-      padding-top: calc(20vh + 32px);
       @include fontText(normal, 300, 26px, 126%);
     }
     @media screen and (max-width: 1024px) {
@@ -304,7 +299,7 @@
     right: 0;
     width: 100%;
     height: 200px;
-    // border: 1px solid red;
+    pointer-events: none;
     background: linear-gradient(
       180deg,
       #191b25 40%,
@@ -314,7 +309,6 @@
 
     @media screen and (max-width: 600px) {
       height: 150px;
-      // border: 1px solid red;
       background: linear-gradient(
         180deg,
         #191b25 40%,
@@ -327,9 +321,9 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    // border: 1px solid red;
     width: 100%;
     height: 250px;
+    pointer-events: none;
     background: linear-gradient(
       180deg,
       rgba(25, 27, 37, 0) 1%,
